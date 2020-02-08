@@ -39,8 +39,9 @@
 
   - **Shows**
     - id
-    - title
     - imdb_id
+    - title
+    - year
     - img_url
     - ~~genre_id - _References Genres_~~ _(moved to new Show-Genres)_
     - ~~user_id - _References Users_~~ _(moved to new User-Shows)_
@@ -100,6 +101,15 @@
     | GET    | `/comments/show/:show_id` | Get all comments for specific show_id | n/a                                  |
     | POST   | `/comments`               | Add new comment                       | `comment_body`, `user_id`, `show_id` |
 -->
+
++ **IV. Resources Used**
+  - http://www.omdbapi.com/
+  - https://www.slashfilm.com/numbers-long-movie-title/
+  - https://www.flaticon.com/packs/sporting-avatars
+      ```
+      <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div>
+      ```
+  
 ---
 
 ---
