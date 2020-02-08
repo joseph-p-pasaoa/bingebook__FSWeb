@@ -60,13 +60,13 @@ CREATE TABLE comments
 INSERT INTO users
    (username, avatar_url)
 VALUES
-   ('ericSego', 'http://localhost:11211/images/uploaded-avatars/avatar-cornrows.svg'),
    ('AlwaysOnAHorse', 'http://localhost:11211/images/uploaded-avatars/avatar-horsewoman.svg'),
    ('mike1235711', 'http://localhost:11211/images/uploaded-avatars/avatar-karate.svg'),
+   ('ericSego', 'http://localhost:11211/images/uploaded-avatars/avatar-cornrows.svg'),
    ('DanielleLA', 'http://localhost:11211/images/uploaded-avatars/avatar-orange-bun.svg'),
    ('No_harm_No_FOUL', 'http://localhost:11211/images/uploaded-avatars/avatar-referee.svg'),
 
-   ('just stacey', 'http://localhost:11211/images/uploaded-avatars/avatar-sporty-her.svg')
+   ('just judi', 'http://localhost:11211/images/uploaded-avatars/avatar-sporty-her.svg')
 ;
 
 INSERT INTO genres
@@ -102,7 +102,7 @@ VALUES
    ('tt2250192', 'Sword Art Online', '2012–', 'https://m.media-amazon.com/images/M/MV5BYjY4MDU2YjMtNzY1MC00ODg1LWIwMzYtMWE5YTA3YTI4ZjMxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg'),
    ('tt0121955', 'South Park', '1997–', 'https://m.media-amazon.com/images/M/MV5BOGE2YWUzMDItNTg2Ny00NTUzLTlmZGYtNWMyNzVjMjQ3MThkXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg'),
    ('tt3748528', 'Rogue One: A Star Wars Story', '2016', 'https://m.media-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg'),
-   ('tt9426210', 'Weathering with You', '2019', 'https://m.media-amazon.com/images/M/MV5BNzE4ZDEzOGUtYWFjNC00ODczLTljOGQtZGNjNzhjNjdjNjgzXkEyXkFqcGdeQXVyNzE5ODMwNzI@._V1_SX300.jpg'),
+   ('tt2575988', 'Silicon Valley', '2014–2019', 'https://m.media-amazon.com/images/M/MV5BOTcwNzU2MGEtMzUzNC00MzMwLWJhZGItNDY3NDllYjU5YzAyXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg'),
    ('tt11318602', 'Don''t F**k with Cats: Hunting an Internet Killer', '2019', 'https://m.media-amazon.com/images/M/MV5BNGU2OGJkZTItYmRmNi00YTI2LWFkNzEtNjY2MGZiZTRhMzRkXkEyXkFqcGdeQXVyMjYwNDA2MDE@._V1_SX300.jpg'),
 
    ('tt0795176', 'Planet Earth', '2006', 'https://m.media-amazon.com/images/M/MV5BNmZlYzIzMTItY2EzYS00YTEyLTg0ZjEtMDMzZjM3ODdhN2UzXkEyXkFqcGdeQXVyNjI0MDg2NzE@._V1_SX300.jpg')
@@ -139,14 +139,60 @@ VALUES
    (8, 1),
    (8, 2),
    (8, 12),
-   (9, 3),
-   (9, 7),
-   (9, 8),
+   (9, 4),
    (10, 6),
    (10, 5),
    (10, 10),
 
    (11, 6)
+;
+
+INSERT INTO user_shows
+   (user_id, show_id, watch_status, is_top3)
+VALUES
+   (1, 1, 'now', false),
+   (1, 2, 'onRadar', true),
+   (1, 7, 'now', true),
+   (1, 10, 'onRadar', false),
+   (1, 11, 'watched', false),
+
+   (2, 1, 'onRadar', false),
+   (2, 2, 'now', true),
+   (2, 4, 'now', false),
+   (2, 6, 'now', true),
+   (2, 7, 'watched', false),
+   (2, 9, 'watched', true),
+   (2, 11, 'watched', false),
+
+   (3, 2, 'now', true),
+   (3, 10, 'watched', true),
+   (3, 11, 'watched', false),
+
+   (4, 2, 'now', true),
+   (4, 3, 'onRadar', false),
+   (4, 5, 'now', true),
+   (4, 8, 'onRadar', false),
+   (4, 9, 'watched', false),
+   (4, 11, 'watched', false),
+
+   (5, 1, 'now', true),
+   (5, 2, 'now', true),
+   (5, 3, 'watched', false),
+   (5, 5, 'now', false),
+   (5, 7, 'watched', true),
+   (5, 8, 'watched', false),
+   (5, 9, 'onRadar', false),
+   (5, 10, 'onRadar', false),
+
+   (6, 1, 'now', false),
+   (6, 2, 'now', true),
+   (6, 3, 'now', false),
+   (6, 4, 'now', false),
+   (6, 5, 'now', false),
+   (6, 6, 'now', true),
+   (6, 8, 'watched', true),
+   (6, 9, 'watched', false),
+   (6, 10, 'onRadar', false)
 ;
 
 /*
@@ -168,7 +214,7 @@ VALUES
    animation, comedy
 'tt3748528', 'Rogue One: A Star Wars Story', '2016', 'https://m.media-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg',
    action, adventure, sci-fi
-'tt9426210', 'Weathering with You', '2019', 'https://m.media-amazon.com/images/M/MV5BNzE4ZDEzOGUtYWFjNC00ODczLTljOGQtZGNjNzhjNjdjNjgzXkEyXkFqcGdeQXVyNzE5ODMwNzI@._V1_SX300.jpg',
+'tt2575988', 'Silicon Valley', '2014–2019', 'https://m.media-amazon.com/images/M/MV5BOTcwNzU2MGEtMzUzNC00MzMwLWJhZGItNDY3NDllYjU5YzAyXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg',
    animation, drama, fantasy
 'tt11318602', 'Don't F**k with Cats: Hunting an Internet Killer', '2019', 'https://m.media-amazon.com/images/M/MV5BNGU2OGJkZTItYmRmNi00YTI2LWFkNzEtNjY2MGZiZTRhMzRkXkEyXkFqcGdeQXVyMjYwNDA2MDE@._V1_SX300.jpg',
    documentary, crime, mystery
@@ -176,16 +222,6 @@ VALUES
 'tt0795176', 'Planet Earth', '2006', 'https://m.media-amazon.com/images/M/MV5BNmZlYzIzMTItY2EzYS00YTEyLTg0ZjEtMDMzZjM3ODdhN2UzXkEyXkFqcGdeQXVyNjI0MDg2NzE@._V1_SX300.jpg',
    documentary
 
-
-INSERT INTO show_genres
-   (show_id, genre_id)
-VALUES
-   (, )
-
-INSERT INTO user_shows
-   (user_id, show_id, watch_status, is_top3)
-VALUES
-   (, )
 
 INSERT INTO comments
    (usershow_id, time_modified, body)
@@ -205,14 +241,24 @@ SELECT *
 FROM shows;
 
 SELECT show_genres.id
+   , shows.id AS show_id
    , title
+   , genres.id AS genre_id
    , name AS genre
 FROM show_genres
 INNER JOIN shows ON (show_genres.show_id = shows.id)
 INNER JOIN genres ON (show_genres.genre_id = genres.id);
 
-SELECT *
-FROM user_shows;
+SELECT user_shows.id
+   , users.id AS user_id
+   , username
+   , shows.id AS show_id
+   , title
+   , watch_status
+   , is_top3
+FROM user_shows
+INNER JOIN users ON (user_shows.user_id = users.id)
+INNER JOIN shows ON (user_shows.show_id = shows.id);
 
 SELECT *
 FROM comments;
