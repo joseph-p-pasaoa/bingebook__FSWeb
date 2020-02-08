@@ -54,6 +54,8 @@
     - id
     - user_id - _References Users + On Delete Cascade_
     - show_id - _References Shows + On Delete Cascade_
+    - watch_status - ("onRadar", "now", "watched")
+    - is_top3 - (bool)
 
   - **Comments**
     - id

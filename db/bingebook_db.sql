@@ -41,7 +41,9 @@ CREATE TABLE user_shows
 (
    id SERIAL PRIMARY KEY,
    user_id INT REFERENCES users(id) ON DELETE CASCADE,
-   show_id INT REFERENCES shows(id) ON DELETE CASCADE
+   show_id INT REFERENCES shows(id) ON DELETE CASCADE,
+   watch_status VARCHAR(11) NOT NULL DEFAULT 'onRadar',
+   is_top3 BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE comments
