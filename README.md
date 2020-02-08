@@ -30,35 +30,36 @@
 + **II. Modified database schema**
   - **Users**
     - id
-    - username - _Unique_
+    - username - _Unique, Not Null_
     - avatar_url 
 
   - **Genres**
     - id
-    - genre_name - _Unique_
+    - name - _Unique, Not Null_
 
   - **Shows**
     - id
     - title
+    - imdb_id
     - img_url
-    - genre_id - _References Genres_
+    - ~~genre_id - _References Genres_~~ _(moved to new Show-Genres)_
     - ~~user_id - _References Users_~~ _(moved to new User-Shows)_
 
-  - **Show-Genres**
+  - **Show_Genres**
     - id
-    - show_id - _References Shows_
-    - genre_id - _References Genres_
+    - show_id - _References Shows + On Delete Cascade_
+    - genre_id - _References Genres + On Delete Cascade_
 
-  - **User-Shows**
+  - **User_Shows**
     - id
-    - user_id - _References Users_
-    - show_id - _References Shows_
+    - user_id - _References Users + On Delete Cascade_
+    - show_id - _References Shows + On Delete Cascade_
 
   - **Comments**
     - id
-    - comment_body
-    - usershow_id - _References User-Shows_
+    - usershow_id - _References User-Shows + On Delete Cascade_
     - time_modified
+    - body - _Not Null_
     - ~~user_id - _References Users_~~ _(redundant by new usershow_id)_
     - ~~show_id - _References Shows_~~ _(redundant by new usershow_id)_
 
