@@ -15,7 +15,7 @@
 ## Developer's Notes
 
 + **I. TO DO**
-  - database file
+  - ~~database file~~
   - back-end
   - front-end
   - *back-burners:*
@@ -27,7 +27,7 @@
     - avatar upload sys
     - user auth
 
-+ **II. Modified database schema**
++ **II. Working database SCHEMA**
   - **Users**
     - id
     - username - _Unique, Not Null_
@@ -60,14 +60,14 @@
 
   - **Comments**
     - id
-    - commenter_id - _References User-Shows + On Delete Cascade_
+    - commenter_id - _References Users + On Delete Cascade_
     - usershow_id - _References User-Shows + On Delete Cascade_
     - time_modified
     - body - _Not Null_
     - ~~user_id - _References Users_~~ _(redundant by new usershow_id)_
     - ~~show_id - _References Shows_~~ _(redundant by new usershow_id)_
 
-+ **III. Functional Endpoints**
++ **III. Functional ENDPOINTS**
   - Pending
 <!--
   - **Users**
