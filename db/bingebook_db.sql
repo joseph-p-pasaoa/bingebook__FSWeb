@@ -50,6 +50,7 @@ CREATE TABLE user_shows
 CREATE TABLE comments
 (
    id SERIAL PRIMARY KEY,
+   commenter_id INT REFERENCES users(id) ON DELETE CASCADE,
    usershow_id INT REFERENCES user_shows(id) ON DELETE CASCADE,
    time_modified TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
    body TEXT NOT NULL
@@ -195,39 +196,27 @@ VALUES
    (6, 10, 'onRadar', false)
 ;
 
-/*
-
-'tt2442560', 'Peaky Blinders', '2013–', 'https://m.media-amazon.com/images/M/MV5BMTkzNjEzMDEzMF5BMl5BanBnXkFtZTgwMDI0MjE4MjE@._V1_SX300.jpg',
-   crime, drama
-'tt3006802', 'Outlander', '2014–', 'https://m.media-amazon.com/images/M/MV5BMTU1NDc3NzYxN15BMl5BanBnXkFtZTgwMTgyMjQyNjM@._V1_SX300.jpg',
-   drama, fantasy, romance
-'tt1586680', 'Shameless', '2011–', 'https://m.media-amazon.com/images/M/MV5BYzFmODNkNDMtOTgzMy00NzQ1LWEwNDItNzU1MmYyYThhYzUwXkEyXkFqcGdeQXVyOTA3MTMyOTk@._V1_SX300.jpg',
-   comedy, drama
-'tt2085059', 'Black Mirror', '2011–', 'https://m.media-amazon.com/images/M/MV5BYTM3YWVhMDMtNjczMy00NGEyLWJhZDctYjNhMTRkNDE0ZTI1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg',
-   drama, sci-fi, thriller
-'tt5770786', 'GLOW', '2017–', 'https://m.media-amazon.com/images/M/MV5BY2RjYzFkZDUtYzNjNC00MzEyLWFmZmItODc2YWFlOWExOWI4XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SX300.jpg',
-   comedy, drama, sport
-
-'tt2250192', 'Sword Art Online', '2012–', 'https://m.media-amazon.com/images/M/MV5BYjY4MDU2YjMtNzY1MC00ODg1LWIwMzYtMWE5YTA3YTI4ZjMxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
-   animation, action, adventure, comedy, drama, fantasy, romance, sci-fi, thriller
-'tt0121955', 'South Park', '1997–', 'https://m.media-amazon.com/images/M/MV5BOGE2YWUzMDItNTg2Ny00NTUzLTlmZGYtNWMyNzVjMjQ3MThkXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg',
-   animation, comedy
-'tt3748528', 'Rogue One: A Star Wars Story', '2016', 'https://m.media-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg',
-   action, adventure, sci-fi
-'tt2575988', 'Silicon Valley', '2014–2019', 'https://m.media-amazon.com/images/M/MV5BOTcwNzU2MGEtMzUzNC00MzMwLWJhZGItNDY3NDllYjU5YzAyXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg',
-   animation, drama, fantasy
-'tt11318602', 'Don't F**k with Cats: Hunting an Internet Killer', '2019', 'https://m.media-amazon.com/images/M/MV5BNGU2OGJkZTItYmRmNi00YTI2LWFkNzEtNjY2MGZiZTRhMzRkXkEyXkFqcGdeQXVyMjYwNDA2MDE@._V1_SX300.jpg',
-   documentary, crime, mystery
-
-'tt0795176', 'Planet Earth', '2006', 'https://m.media-amazon.com/images/M/MV5BNmZlYzIzMTItY2EzYS00YTEyLTg0ZjEtMDMzZjM3ODdhN2UzXkEyXkFqcGdeQXVyNjI0MDg2NzE@._V1_SX300.jpg',
-   documentary
-
-
 INSERT INTO comments
-   (usershow_id, time_modified, body)
+   (commenter_id, usershow_id, body)
 VALUES
-   (, , )
-*/
+   (1, 30, 'Love this!'),
+   (1, 32, 'Yes!'),
+   (1, 31, 'Outlander! Thanks for introducing me!'),
+   (1, 35, 'Whoohoo!'),
+   (6, 31, 'absolutely! my favorite!'),
+   (2, 31, 'YASSSS'),
+   (3, 7, 'Yes!'),
+   (3, 18, 'Surely awesome'),
+   (3, 19, 'O.o'),
+   (3, 31, 'zug zug'),
+   (4, 31, 'Where have I been? This show rocks!'),
+   (5, 8, 'Yes! TWOICE'),
+   (5, 11, 'omg the humor is ON POINT'),
+   (5, 19, 'honestly, not a big fan :/. liked the original tril better'),
+   (5, 22, 'Cillian''s got that dreammy swaggg ;D'),
+   (5, 31, 'JAMIE JAMIE JAMI--RAWRRRR'),
+   (6, 31, 'MOOD <3')
+;
 
 
 /* POST-SEED QUERIES CHECKS */
@@ -262,3 +251,31 @@ INNER JOIN shows ON (user_shows.show_id = shows.id);
 
 SELECT *
 FROM comments;
+
+
+/* DATA STORE
+'tt2442560', 'Peaky Blinders', '2013–', 'https://m.media-amazon.com/images/M/MV5BMTkzNjEzMDEzMF5BMl5BanBnXkFtZTgwMDI0MjE4MjE@._V1_SX300.jpg',
+   crime, drama
+'tt3006802', 'Outlander', '2014–', 'https://m.media-amazon.com/images/M/MV5BMTU1NDc3NzYxN15BMl5BanBnXkFtZTgwMTgyMjQyNjM@._V1_SX300.jpg',
+   drama, fantasy, romance
+'tt1586680', 'Shameless', '2011–', 'https://m.media-amazon.com/images/M/MV5BYzFmODNkNDMtOTgzMy00NzQ1LWEwNDItNzU1MmYyYThhYzUwXkEyXkFqcGdeQXVyOTA3MTMyOTk@._V1_SX300.jpg',
+   comedy, drama
+'tt2085059', 'Black Mirror', '2011–', 'https://m.media-amazon.com/images/M/MV5BYTM3YWVhMDMtNjczMy00NGEyLWJhZDctYjNhMTRkNDE0ZTI1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg',
+   drama, sci-fi, thriller
+'tt5770786', 'GLOW', '2017–', 'https://m.media-amazon.com/images/M/MV5BY2RjYzFkZDUtYzNjNC00MzEyLWFmZmItODc2YWFlOWExOWI4XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SX300.jpg',
+   comedy, drama, sport
+
+'tt2250192', 'Sword Art Online', '2012–', 'https://m.media-amazon.com/images/M/MV5BYjY4MDU2YjMtNzY1MC00ODg1LWIwMzYtMWE5YTA3YTI4ZjMxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
+   animation, action, adventure, comedy, drama, fantasy, romance, sci-fi, thriller
+'tt0121955', 'South Park', '1997–', 'https://m.media-amazon.com/images/M/MV5BOGE2YWUzMDItNTg2Ny00NTUzLTlmZGYtNWMyNzVjMjQ3MThkXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg',
+   animation, comedy
+'tt3748528', 'Rogue One: A Star Wars Story', '2016', 'https://m.media-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg',
+   action, adventure, sci-fi
+'tt2575988', 'Silicon Valley', '2014–2019', 'https://m.media-amazon.com/images/M/MV5BOTcwNzU2MGEtMzUzNC00MzMwLWJhZGItNDY3NDllYjU5YzAyXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg',
+   animation, drama, fantasy
+'tt11318602', 'Don't F**k with Cats: Hunting an Internet Killer', '2019', 'https://m.media-amazon.com/images/M/MV5BNGU2OGJkZTItYmRmNi00YTI2LWFkNzEtNjY2MGZiZTRhMzRkXkEyXkFqcGdeQXVyMjYwNDA2MDE@._V1_SX300.jpg',
+   documentary, crime, mystery
+
+'tt0795176', 'Planet Earth', '2006', 'https://m.media-amazon.com/images/M/MV5BNmZlYzIzMTItY2EzYS00YTEyLTg0ZjEtMDMzZjM3ODdhN2UzXkEyXkFqcGdeQXVyNjI0MDg2NzE@._V1_SX300.jpg',
+   documentary
+*/

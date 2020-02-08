@@ -60,6 +60,7 @@
 
   - **Comments**
     - id
+    - commenter_id - _References User-Shows + On Delete Cascade_
     - usershow_id - _References User-Shows + On Delete Cascade_
     - time_modified
     - body - _Not Null_
