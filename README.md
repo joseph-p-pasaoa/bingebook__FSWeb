@@ -12,6 +12,91 @@
 + **IA:** [Jung Rae Jang -- ( @jungraejang )](https//github.com/jungraejang)
 + **IA:** [Wynter Reid -- ( @wynterreid )](https://github.com/wynterreid)
 
+## Developer's Notes
+
++ **I. TO DO**
+  - database file
+  - back-end
+  - front-end
+  - *back-burners:*
+    - admin console ?
+      - admin DELETE
+      - display existing users
+      - display existing genres
+      - display existing shows
+    - avatar upload sys
+    - user auth
+
++ **II. Modified database schema**
+  - **Users**
+    - id
+    - username - _Unique_
+    - avatar_url 
+
+  - **Genres**
+    - id
+    - genre_name - _Unique_
+
+  - **Shows**
+    - id
+    - title
+    - img_url
+    - genre_id - _References Genres_
+    - ~~user_id - _References Users_~~ _(moved to new User-Shows)_
+
+  - **Show-Genres**
+    - id
+    - show_id - _References Shows_
+    - genre_id - _References Genres_
+
+  - **User-Shows**
+    - id
+    - user_id - _References Users_
+    - show_id - _References Shows_
+
+  - **Comments**
+    - id
+    - comment_body
+    - usershow_id - _References User-Shows_
+    - time_modified
+    - ~~user_id - _References Users_~~ _(redundant by new usershow_id)_
+    - ~~show_id - _References Shows_~~ _(redundant by new usershow_id)_
+
++ **III. Functional Endpoints**
+  - Pending
+<!--
+  - **Users**
+
+    | Method | Endpoint     | Description           | Body Data                |
+    | ------ | ------------ | --------------------- | ------------------------ |
+    | GET    | `/users`     | Get all users         | n/a                      |
+    | GET    | `/users/:id` | Get single user by id | n/a                      |
+    | POST   | `/users/`    | Add new user          | `avatar_url`, `username` |
+
+  - **Genres**
+
+    | Method | Endpoint  | Description    | Body Data    |
+    | ------ | --------- | -------------- | ------------ |
+    | GET    | `/genres` | Get all genres | n/a          |
+    | POST   | `/genres` | Add new genre  | `genre_name` |
+
+  - **Shows**
+
+    | Method | Endpoint                 | Description                         | Body Data                                 |
+    | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
+    | GET    | `/shows`                 | Get all shows                       | n/a                                       |
+    | GET    | `/shows/:id`             | Get single show by id               | n/a                                       |
+    | POST   | `/shows`                 | Add new show                        | `title`, `img_url`, `user_id`, `genre_id` |
+    | GET    | `/shows/genre/:genre_id` | Get all shows for specific genre_id | n/a                                       |
+    | GET    | `/shows/user/:user_id`   | Get all shows for specific user_id  | n/a                                       |
+
+  - **Comments**
+
+    | Method | Endpoint                  | Description                           | Body Data                            |
+    | ------ | ------------------------- | ------------------------------------- | ------------------------------------ |
+    | GET    | `/comments/show/:show_id` | Get all comments for specific show_id | n/a                                  |
+    | POST   | `/comments`               | Add new comment                       | `comment_body`, `user_id`, `show_id` |
+-->
 ---
 
 ---
