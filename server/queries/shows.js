@@ -34,6 +34,23 @@ const getShowById = async (id) => {
   }
 }
 
+const getShowByImdbId = async (imdbId) => {
+  try {
+    const getQuery = `
+      SELECT *
+      FROM shows
+      WHERE imdb_id = $/imdbId/;
+    `;
+    return await db.one(getQuery, { imdbId });
+  } catch (err) {
+    if (err.message === "No data returned from the query.") {
+      throw new Error(`404__error: No show with imdb id '${imdbId
+        }' exists in our database`);
+    }
+    throw (err);
+  }
+}
+
 const addShow = async (bodyObj) => {
   try {
     const postQuery = `
@@ -61,5 +78,6 @@ const addShow = async (bodyObj) => {
 module.exports = {
   getAllShows,
   getShowById,
+  getShowByImdbId,
   addShow
 }

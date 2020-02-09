@@ -43,6 +43,21 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
+    // getshowByImdbId: get single show by specified IMDB id
+router.get("/imdb/:imdb_id", async (req, res, next) => {
+    try {
+      const imdbId = processInput(req.params.imdb_id, "imdbId", "imdb id");
+      const showByImdbId = await queries.getShowByImdbId(imdbId);
+      res.json({
+          status: "success",
+          message: `show '${showByImdbId.title}' using imdb_id '${imdbId}' retrieved`,
+          payload: showByImdbId
+      });
+    } catch (err) {
+      handleError(err, req, res, next);
+    }
+});
+
     // addShow: add a single new show
 router.post("/", async (req, res, next) => {
     try {

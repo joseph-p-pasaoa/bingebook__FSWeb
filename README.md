@@ -82,6 +82,7 @@
     | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
     | GET    | `/shows`                 | Get all shows                       | n/a                                       |
     | GET    | `/shows/:id`             | Get single show by id               | n/a                                       |
+    | GET    | `/shows/imdb/:imdb_id`             | Get single show by Imdb id               | n/a                                       |
     | POST   | `/shows`                 | Add new show                        | `imdb_id`, `title`, `year`, `img_url` |
 
   - **Genres**
