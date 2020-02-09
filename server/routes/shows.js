@@ -43,21 +43,25 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-//     // addshow: add a single new show
-// router.post("/", async (req, res, next) => {
-//     try {
-//       const showname = processInput(req.body.showname, "hardVarchar22", "showname");
-//       const avatarUrl = processInput(req.body.avatarUrl, "softUrl", "avatar url");
-//       const response = await queries.addshow({ showname, avatarUrl });
-//       res.json({
-//           status: "success",
-//           message: `new show ${showname} added`,
-//           payload: response
-//       });
-//     } catch (err) {
-//       handleError(err, req, res, next);
-//     }
-// });
+    // addShow: add a single new show
+router.post("/", async (req, res, next) => {
+    try {
+      const imdbId = processInput(req.body.imdbId, "imdbId", "imdb id");
+      const title = processInput(req.body.title, "show title", "show title");
+      const year = processInput(req.body.year, "softVarchar22", "show year(s)");
+      const imgUrl = processInput(req.body.imgUrl, "softPicUrl", "show image url");
+      const response = await queries.addShow({
+        imdbId, title, year, imgUrl
+      });
+      res.json({
+          status: "success",
+          message: `new show '${title}' added`,
+          payload: response
+      });
+    } catch (err) {
+      handleError(err, req, res, next);
+    }
+});
 
 
 module.exports = router;

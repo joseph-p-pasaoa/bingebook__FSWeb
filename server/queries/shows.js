@@ -34,31 +34,32 @@ const getShowById = async (id) => {
   }
 }
 
-// const addShow = async (bodyObj) => {
-//   try {
-//     const postQuery = `
-//       INSERT INTO shows (Showname
-//         , avatar_url
-//       ) VALUES ($/Showname/
-//         , $/avatarUrl/
-//       ) RETURNING *;
-//     `;
-//     return await db.one(postQuery, bodyObj);
-//   } catch (err) {
-//     if (err.message.includes("violates unique constraint")) {
-//       throw new Error(
-//         `403__error: Showname ${bodyObj.Showname
-//           } already exists. Please try again with a new Showname.`
-//       );
-//     }
-//     throw (err);
-//   }
-// }
+const addShow = async (bodyObj) => {
+  try {
+    const postQuery = `
+      INSERT INTO shows (imdb_id
+        , title
+        , year
+        , img_url
+      ) VALUES ($/imdbId/
+        , $/title/
+        , $/year/
+        , $/imgUrl/
+      ) RETURNING *;
+    `;
+    return await db.one(postQuery, bodyObj);
+  } catch (err) {
+    if (err.message.includes("violates unique constraint")) {
+      throw new Error(`403__error: Show '${bodyObj.title}' already exists in database`);
+    }
+    throw (err);
+  }
+}
 
 
 /* EXPORT */
 module.exports = {
   getAllShows,
   getShowById,
-  // addShow
+  addShow
 }
