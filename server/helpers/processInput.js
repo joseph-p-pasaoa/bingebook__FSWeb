@@ -15,6 +15,15 @@ const processInput = (input, location, inputName) => {
         }
         return parseInt(input);
 
+    case "imdbId":
+      if (!input || !input.trim()) {
+        throw new Error(`400__error: empty ${inputName}. please check input and try again`);
+      }
+      if (input.slice(0, 2) !== "tt" || input.length > 11) {
+        throw new Error(`400__error: invalid imdb ID format. please verify imdb ID is correct`)
+      }
+      return input.trim();
+
     case "hardVarchar22":
         if (!input || !input.trim()) {
           throw new Error(`400__error: empty ${inputName} input. please re-enter and try again`);
@@ -24,7 +33,25 @@ const processInput = (input, location, inputName) => {
         }
         return input.trim();
 
-    case "softUrl":
+    case "softVarchar22":
+        if (!input || !input.trim()) {
+          return "";
+        }
+        if (input.trim().length > 22) {
+          throw new Error(`400__error: ${inputName} is too long. please shorten`);
+        }
+        return input.trim();
+
+    case "show title":
+        if (!input || !input.trim()) {
+          throw new Error(`400__error: empty ${inputName} input. please re-enter and try again`);
+        }
+        if (input.trim().length > 90) {
+          throw new Error(`400__error: ${inputName} is too long. please shorten and try again`);
+        }
+        return input.trim();
+
+    case "softPicUrl":
         if (!input || !input.trim()) {
           return "";
         }

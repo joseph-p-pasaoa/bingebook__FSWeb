@@ -47,11 +47,11 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
     try {
       const username = processInput(req.body.username, "hardVarchar22", "username");
-      const avatarUrl = processInput(req.body.avatarUrl, "softUrl", "avatar url");
+      const avatarUrl = processInput(req.body.avatarUrl, "softPicUrl", "avatar url");
       const response = await queries.addUser({ username, avatarUrl });
       res.json({
           status: "success",
-          message: `new user ${username} added`,
+          message: `new user '${username}' added`,
           payload: response
       });
     } catch (err) {

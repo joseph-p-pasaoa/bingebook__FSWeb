@@ -40,7 +40,7 @@
   - **Shows**
     - id
     - imdb_id
-    - title
+    - title - _Not Null_
     - year
     - img_url
     - ~~genre_id - _References Genres_~~ _(moved to new Show-Genres)_
@@ -82,17 +82,17 @@
     | ------ | --------- | -------------- | ------------ |
     | GET    | `/genres` | Get all genres | n/a          |
     | POST   | `/genres` | Add new genre  | `name` |
-<!--
+
   - **Shows**
 
     | Method | Endpoint                 | Description                         | Body Data                                 |
     | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
     | GET    | `/shows`                 | Get all shows                       | n/a                                       |
     | GET    | `/shows/:id`             | Get single show by id               | n/a                                       |
-    | POST   | `/shows`                 | Add new show                        | `title`, `img_url`, `user_id`, `genre_id` |
+    | POST   | `/shows`                 | Add new show                        | `imdb_id`, `title`, `year`, `img_url` |
     | GET    | `/shows/genre/:genre_id` | Get all shows for specific genre_id | n/a                                       |
     | GET    | `/shows/user/:user_id`   | Get all shows for specific user_id  | n/a                                       |
-
+<!--
   - **Comments**
 
     | Method | Endpoint                  | Description                           | Body Data                            |
