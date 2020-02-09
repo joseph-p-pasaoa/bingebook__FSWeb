@@ -22,9 +22,11 @@ app.use(express.static(path.join(__dirname, 'public')));
     // imports
 const usersRouter = require('./routes/users');
 const genresRouter = require('./routes/genres');
+const showsRouter = require('./routes/shows');
     // connects
 app.use('/users', usersRouter);
 app.use('/genres', genresRouter);
+app.use('/shows', showsRouter);
 
 
 /* ERROR HANDLING */
