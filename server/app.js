@@ -20,11 +20,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* ROUTING */
     // imports
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
     // connects
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
+/* ERROR HANDLING */
+    // no-route catch
+app.use("*", (req, res) => {
+  res.status(404).send('Error: no such route found on Bingebook server. Try again after fixing your route.');
+});
+
+    // server error catch
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send('server error');
+});
 
 
 module.exports = app;
