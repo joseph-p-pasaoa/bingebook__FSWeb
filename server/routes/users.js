@@ -14,7 +14,7 @@ const queries = require('../queries/users.js');
 
 
 /* ROUTE HANDLERS */
-//    getAllUsers: get all users data
+    // getAllUsers: get all users data
 router.get("/", async (req, res, next) => {
     try {
       const allUsers = await queries.getAllUsers();
@@ -28,7 +28,7 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-//    getUserById: get single user by specified id
+    // getUserById: get single user by specified id
 router.get("/:id", async (req, res, next) => {
     try {
       const id = processInput(req.params.id, "idNum", "user id");
@@ -43,7 +43,7 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-//    addUser: add a single new user
+    // addUser: add a single new user
 router.post("/", async (req, res, next) => {
     try {
       const username = processInput(req.body.username, "varchar22", "username");
