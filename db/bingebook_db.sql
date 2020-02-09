@@ -25,8 +25,8 @@ CREATE TABLE genres
 CREATE TABLE shows
 (
    id SERIAL PRIMARY KEY,
-   imdb_id VARCHAR(22),
-   title VARCHAR(90),
+   imdb_id VARCHAR(22) UNIQUE NOT NULL,
+   title VARCHAR(90) NOT NULL,
    year VARCHAR(22),
    img_url TEXT DEFAULT ''
 );
