@@ -28,6 +28,16 @@ const getAllShowsOfUser = async (userId) => {
   return await db.any(getQuery, { userId });
 }
 
+const getOneUserShow = async (userId, showId) => {
+  const getQuery = `
+    SELECT *
+    FROM users_shows
+    WHERE user_id = $/userId/ AND
+        show_id = $/showId/;
+  `;
+  return await db.one(getQuery, { userId, showId });
+}
+
 // const addShow = async (bodyObj) => {
 //   try {
 //     const postQuery = `
@@ -54,6 +64,6 @@ const getAllShowsOfUser = async (userId) => {
 /* EXPORT */
 module.exports = {
   getAllShowsOfUser,
-  // getShowById,
+  getOneUserShow,
   // addShow
 }
