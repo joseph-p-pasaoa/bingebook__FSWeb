@@ -28,20 +28,20 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-//     // getshowById: get single show by specified id
-// router.get("/:id", async (req, res, next) => {
-//     try {
-//       const id = processInput(req.params.id, "idNum", "show id");
-//       const showById = await queries.getshowById(id);
-//       res.json({
-//           status: "success",
-//           message: `show ${id} retrieved`,
-//           payload: showById
-//       });
-//     } catch (err) {
-//       handleError(err, req, res, next);
-//     }
-// });
+    // getshowById: get single show by specified id
+router.get("/:id", async (req, res, next) => {
+    try {
+      const id = processInput(req.params.id, "idNum", "show id");
+      const showById = await queries.getShowById(id);
+      res.json({
+          status: "success",
+          message: `show ${id} retrieved`,
+          payload: showById
+      });
+    } catch (err) {
+      handleError(err, req, res, next);
+    }
+});
 
 //     // addshow: add a single new show
 // router.post("/", async (req, res, next) => {
