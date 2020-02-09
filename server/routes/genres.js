@@ -28,36 +28,20 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-//     // getUserById: get single user by specified id
-// router.get("/:id", async (req, res, next) => {
-//     try {
-//       const id = processInput(req.params.id, "idNum", "user id");
-//       const userById = await queries.getUserById(id);
-//       res.json({
-//           status: "success",
-//           message: `user ${id} retrieved`,
-//           payload: userById
-//       });
-//     } catch (err) {
-//       handleError(err, req, res, next);
-//     }
-// });
-
-//     // addUser: add a single new user
-// router.post("/", async (req, res, next) => {
-//     try {
-//       const username = processInput(req.body.username, "varchar22", "username");
-//       const avatarUrl = processInput(req.body.avatarUrl, "softUrl", "avatar url");
-//       const response = await queries.addUser({ username, avatarUrl });
-//       res.json({
-//           status: "success",
-//           message: `new user ${username} added`,
-//           payload: response
-//       });
-//     } catch (err) {
-//       handleError(err, req, res, next);
-//     }
-// });
+    // addGenre: add a single new genre
+router.post("/", async (req, res, next) => {
+    try {
+      const name = processInput(req.body.name, "hardVarchar22", "genre name");
+      const response = await queries.addGenre({ name });
+      res.json({
+          status: "success",
+          message: `new genre ${name} added`,
+          payload: response
+      });
+    } catch (err) {
+      handleError(err, req, res, next);
+    }
+});
 
 
 module.exports = router;
