@@ -68,23 +68,21 @@
     - ~~show_id - _References Shows_~~ _(redundant by new usershow_id)_
 
 + **III. Functional ENDPOINTS**
-  - Pending
-<!--
   - **Users**
 
     | Method | Endpoint     | Description           | Body Data                |
     | ------ | ------------ | --------------------- | ------------------------ |
     | GET    | `/users`     | Get all users         | n/a                      |
     | GET    | `/users/:id` | Get single user by id | n/a                      |
-    | POST   | `/users/`    | Add new user          | `avatar_url`, `username` |
+    | POST   | `/users/`    | Add new user          | `username`, `avatarUrl` |
 
   - **Genres**
 
     | Method | Endpoint  | Description    | Body Data    |
     | ------ | --------- | -------------- | ------------ |
     | GET    | `/genres` | Get all genres | n/a          |
-    | POST   | `/genres` | Add new genre  | `genre_name` |
-
+    | POST   | `/genres` | Add new genre  | `name` |
+<!--
   - **Shows**
 
     | Method | Endpoint                 | Description                         | Body Data                                 |
