@@ -23,16 +23,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 const usersRouter = require('./routes/users');
 const showsRouter = require('./routes/shows');
 const genresRouter = require('./routes/genres');
+const usersAndShowsRouter = require('./routes/users-shows');
     // connects
 app.use('/users', usersRouter);
 app.use('/shows', showsRouter);
 app.use('/genres', genresRouter);
+app.use('/users-shows', usersAndShowsRouter);
 
 
 /* ERROR HANDLING */
     // no-route catch
 app.use("*", (req, res) => {
-    res.status(404).send('Error: no such route found on Bingebook server. Try again after fixing your route.');
+    res.status(404).send(
+      'error: no such route found on the Bingebook server. Try again after fixing your route.'
+    );
 });
 
     // server error catch

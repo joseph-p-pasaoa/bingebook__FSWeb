@@ -30,7 +30,7 @@ const addGenre = async (bodyObj) => {
     if (err.message.includes("violates unique constraint")) {
       throw new Error(
         `403__error: genre ${bodyObj.name
-          } already exists. Please use a new genre name.`
+          } already exists. Please try a different genre name`
       );
     }
     throw (err);

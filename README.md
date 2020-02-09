@@ -95,7 +95,7 @@
 
     | Method | Endpoint                 | Description                         | Body Data                                 |
     | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
-    | GET    | `/shows/user/:user_id`   | Get all shows for specific user_id  | n/a   
+    | GET    | `/users-shows/user/:user_id`   | Get all shows for specific user_id  | n/a
 
 <!--
   - **Shows-Genres**
