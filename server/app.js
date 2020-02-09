@@ -21,8 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* ROUTING */
     // imports
 const usersRouter = require('./routes/users');
+const genresRouter = require('./routes/genres');
     // connects
 app.use('/users', usersRouter);
+app.use('/genres', genresRouter);
 
 
 /* ERROR HANDLING */
