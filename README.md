@@ -97,6 +97,7 @@
     | Method | Endpoint                 | Description                         | Body Data                                 |
     | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
     | GET    | `/users-shows/user/:user_id`   | Get all shows for specific user_id  | n/a
+    | POST   | `/add/:user_id/:imdb_id/:watch_status`                 | Add new user-show connection w/ watch status                       | n/a                                       |
 
 <!--
   - **Shows-Genres**

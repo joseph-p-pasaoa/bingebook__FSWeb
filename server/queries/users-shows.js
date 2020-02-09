@@ -28,42 +28,42 @@ const getAllShowsOfUser = async (userId) => {
   return await db.any(getQuery, { userId });
 }
 
-const getOneUserShow = async (userId, showId) => {
-  const getQuery = `
-    SELECT *
-    FROM users_shows
-    WHERE user_id = $/userId/ AND
-        show_id = $/showId/;
-  `;
-  return await db.one(getQuery, { userId, showId });
+const checkUserShowExists = async (userId, showId) => {
+  try {
+    const getQuery = `
+      SELECT *
+      FROM users_shows
+      WHERE user_id = $/userId/ AND
+          show_id = $/showId/;
+    `;
+    await db.one(getQuery, { userId, showId });
+    return true;
+  } catch (err) {
+    if (err.message === "No data returned from the query.") {
+      return false;
+    } else {
+      throw (err);
+    }
+  }
 }
 
-// const addShow = async (bodyObj) => {
-//   try {
-//     const postQuery = `
-//       INSERT INTO shows (imdb_id
-//         , title
-//         , year
-//         , img_url
-//       ) VALUES ($/imdbId/
-//         , $/title/
-//         , $/year/
-//         , $/imgUrl/
-//       ) RETURNING *;
-//     `;
-//     return await db.one(postQuery, bodyObj);
-//   } catch (err) {
-//     if (err.message.includes("violates unique constraint")) {
-//       throw new Error(`403__error: Show '${bodyObj.title}' already exists in database`);
-//     }
-//     throw (err);
-//   }
-// }
+const addUserShow = async (bodyObj) => {
+  const postQuery = `
+    INSERT INTO users_shows (user_id
+      , show_id
+      , watch_status
+    ) VALUES ($/userId/
+      , $/showId/
+      , $/watchStatus/
+    ) RETURNING *;
+  `;
+  return await db.one(postQuery, bodyObj);
+}
 
 
 /* EXPORT */
 module.exports = {
   getAllShowsOfUser,
-  getOneUserShow,
-  // addShow
+  checkUserShowExists,
+  addUserShow
 }

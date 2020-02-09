@@ -16,13 +16,13 @@ const processInput = (input, location, inputName) => {
         return parseInt(input);
 
     case "imdbId":
-      if (!input || !input.trim()) {
-        throw new Error(`400__error: empty ${inputName}. please check input and try again`);
-      }
-      if (input.slice(0, 2) !== "tt" || input.length > 11) {
-        throw new Error(`400__error: invalid imdb ID format. please verify imdb ID is correct`)
-      }
-      return input.trim();
+        if (!input || !input.trim()) {
+          throw new Error(`400__error: empty ${inputName}. please check input and try again`);
+        }
+        if (input.slice(0, 2) !== "tt" || input.length > 11) {
+          throw new Error(`400__error: invalid imdb ID format. please verify imdb ID is correct`)
+        }
+        return input.trim();
 
     case "hardVarchar22":
         if (!input || !input.trim()) {
@@ -42,6 +42,20 @@ const processInput = (input, location, inputName) => {
         }
         return input.trim();
 
+    case "watchStatus":
+        if (!input || !input.trim()) {
+          throw new Error(`400__error: missing ${inputName}. please check and try again`);
+        }
+        const accepted = {
+          "onRadar": true,
+          "now": true,
+          "finished": true
+        };
+        if (accepted[input.trim()] !== true) {
+          throw new Error(`400__error: unknown ${inputName}. please check and try again`);
+        }
+        return input.trim();
+
     case "show title":
         if (!input || !input.trim()) {
           throw new Error(`400__error: empty ${inputName} input. please re-enter and try again`);
@@ -58,14 +72,14 @@ const processInput = (input, location, inputName) => {
         const trimmed = input.trim();
         const protocolCheck = trimmed.slice(0, 7) !== "http://" && trimmed.slice(0, 8) !== "https://";
         const lengthCheck = trimmed.length < 12; // protocol (7) + name(1) + .file format extension (4)
-        const acceptableFileTypes = {
+        const acceptable = {
           ".jpg": true,
           ".png": true,
           ".gif": true,
           ".svg": true
         };
         const fileType = trimmed.slice(-4);
-        const typeCheck = acceptableFileTypes[fileType] !== true;
+        const typeCheck = acceptable[fileType] !== true;
         if (protocolCheck || lengthCheck || typeCheck) {
           throw new Error(`400__error: invalid ${inputName}. please enter a valid url`);
         }
