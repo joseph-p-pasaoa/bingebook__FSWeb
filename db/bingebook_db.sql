@@ -16,12 +16,6 @@ CREATE TABLE users
    avatar_url TEXT DEFAULT ''
 );
 
-CREATE TABLE genres
-(
-   id SERIAL PRIMARY KEY,
-   name VARCHAR(22) UNIQUE NOT NULL
-);
-
 CREATE TABLE shows
 (
    id SERIAL PRIMARY KEY,
@@ -31,11 +25,10 @@ CREATE TABLE shows
    img_url TEXT DEFAULT ''
 );
 
-CREATE TABLE shows_genres
+CREATE TABLE genres
 (
    id SERIAL PRIMARY KEY,
-   show_id INT REFERENCES shows(id) ON DELETE CASCADE,
-   genre_id INT REFERENCES genres(id) ON DELETE CASCADE
+   name VARCHAR(22) UNIQUE NOT NULL
 );
 
 CREATE TABLE users_shows
@@ -45,6 +38,13 @@ CREATE TABLE users_shows
    show_id INT REFERENCES shows(id) ON DELETE CASCADE,
    watch_status VARCHAR(11) NOT NULL DEFAULT 'onRadar',
    is_top3 BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE shows_genres
+(
+   id SERIAL PRIMARY KEY,
+   show_id INT REFERENCES shows(id) ON DELETE CASCADE,
+   genre_id INT REFERENCES genres(id) ON DELETE CASCADE
 );
 
 CREATE TABLE comments
@@ -70,6 +70,24 @@ VALUES
    ('just judi', 'http://localhost:11211/images/uploaded-avatars/avatar-sporty-her.svg')
 ;
 
+INSERT INTO shows
+   (imdb_id, title, year, img_url)
+VALUES
+   ('tt2442560', 'Peaky Blinders', '2013–', 'https://m.media-amazon.com/images/M/MV5BMTkzNjEzMDEzMF5BMl5BanBnXkFtZTgwMDI0MjE4MjE@._V1_SX300.jpg'),
+   ('tt3006802', 'Outlander', '2014–', 'https://m.media-amazon.com/images/M/MV5BMTU1NDc3NzYxN15BMl5BanBnXkFtZTgwMTgyMjQyNjM@._V1_SX300.jpg'),
+   ('tt1586680', 'Shameless', '2011–', 'https://m.media-amazon.com/images/M/MV5BYzFmODNkNDMtOTgzMy00NzQ1LWEwNDItNzU1MmYyYThhYzUwXkEyXkFqcGdeQXVyOTA3MTMyOTk@._V1_SX300.jpg'),
+   ('tt2085059', 'Black Mirror', '2011–', 'https://m.media-amazon.com/images/M/MV5BYTM3YWVhMDMtNjczMy00NGEyLWJhZDctYjNhMTRkNDE0ZTI1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg'),
+   ('tt5770786', 'GLOW', '2017–', 'https://m.media-amazon.com/images/M/MV5BY2RjYzFkZDUtYzNjNC00MzEyLWFmZmItODc2YWFlOWExOWI4XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SX300.jpg'),
+
+   ('tt2250192', 'Sword Art Online', '2012–', 'https://m.media-amazon.com/images/M/MV5BYjY4MDU2YjMtNzY1MC00ODg1LWIwMzYtMWE5YTA3YTI4ZjMxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg'),
+   ('tt0121955', 'South Park', '1997–', 'https://m.media-amazon.com/images/M/MV5BOGE2YWUzMDItNTg2Ny00NTUzLTlmZGYtNWMyNzVjMjQ3MThkXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg'),
+   ('tt3748528', 'Rogue One: A Star Wars Story', '2016', 'https://m.media-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg'),
+   ('tt2575988', 'Silicon Valley', '2014–2019', 'https://m.media-amazon.com/images/M/MV5BOTcwNzU2MGEtMzUzNC00MzMwLWJhZGItNDY3NDllYjU5YzAyXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg'),
+   ('tt11318602', 'Don''t F**k with Cats: Hunting an Internet Killer', '2019', 'https://m.media-amazon.com/images/M/MV5BNGU2OGJkZTItYmRmNi00YTI2LWFkNzEtNjY2MGZiZTRhMzRkXkEyXkFqcGdeQXVyMjYwNDA2MDE@._V1_SX300.jpg'),
+
+   ('tt0795176', 'Planet Earth', '2006', 'https://m.media-amazon.com/images/M/MV5BNmZlYzIzMTItY2EzYS00YTEyLTg0ZjEtMDMzZjM3ODdhN2UzXkEyXkFqcGdeQXVyNjI0MDg2NzE@._V1_SX300.jpg')
+;
+
 INSERT INTO genres
    (name)
 VALUES
@@ -89,63 +107,6 @@ VALUES
    ('sci-fi'),
    ('sport'),
    ('thriller')
-;
-
-INSERT INTO shows
-   (imdb_id, title, year, img_url)
-VALUES
-   ('tt2442560', 'Peaky Blinders', '2013–', 'https://m.media-amazon.com/images/M/MV5BMTkzNjEzMDEzMF5BMl5BanBnXkFtZTgwMDI0MjE4MjE@._V1_SX300.jpg'),
-   ('tt3006802', 'Outlander', '2014–', 'https://m.media-amazon.com/images/M/MV5BMTU1NDc3NzYxN15BMl5BanBnXkFtZTgwMTgyMjQyNjM@._V1_SX300.jpg'),
-   ('tt1586680', 'Shameless', '2011–', 'https://m.media-amazon.com/images/M/MV5BYzFmODNkNDMtOTgzMy00NzQ1LWEwNDItNzU1MmYyYThhYzUwXkEyXkFqcGdeQXVyOTA3MTMyOTk@._V1_SX300.jpg'),
-   ('tt2085059', 'Black Mirror', '2011–', 'https://m.media-amazon.com/images/M/MV5BYTM3YWVhMDMtNjczMy00NGEyLWJhZDctYjNhMTRkNDE0ZTI1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg'),
-   ('tt5770786', 'GLOW', '2017–', 'https://m.media-amazon.com/images/M/MV5BY2RjYzFkZDUtYzNjNC00MzEyLWFmZmItODc2YWFlOWExOWI4XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SX300.jpg'),
-
-   ('tt2250192', 'Sword Art Online', '2012–', 'https://m.media-amazon.com/images/M/MV5BYjY4MDU2YjMtNzY1MC00ODg1LWIwMzYtMWE5YTA3YTI4ZjMxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg'),
-   ('tt0121955', 'South Park', '1997–', 'https://m.media-amazon.com/images/M/MV5BOGE2YWUzMDItNTg2Ny00NTUzLTlmZGYtNWMyNzVjMjQ3MThkXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg'),
-   ('tt3748528', 'Rogue One: A Star Wars Story', '2016', 'https://m.media-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg'),
-   ('tt2575988', 'Silicon Valley', '2014–2019', 'https://m.media-amazon.com/images/M/MV5BOTcwNzU2MGEtMzUzNC00MzMwLWJhZGItNDY3NDllYjU5YzAyXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_SX300.jpg'),
-   ('tt11318602', 'Don''t F**k with Cats: Hunting an Internet Killer', '2019', 'https://m.media-amazon.com/images/M/MV5BNGU2OGJkZTItYmRmNi00YTI2LWFkNzEtNjY2MGZiZTRhMzRkXkEyXkFqcGdeQXVyMjYwNDA2MDE@._V1_SX300.jpg'),
-
-   ('tt0795176', 'Planet Earth', '2006', 'https://m.media-amazon.com/images/M/MV5BNmZlYzIzMTItY2EzYS00YTEyLTg0ZjEtMDMzZjM3ODdhN2UzXkEyXkFqcGdeQXVyNjI0MDg2NzE@._V1_SX300.jpg')
-;
-
-INSERT INTO shows_genres
-   (show_id, genre_id)
-VALUES
-   (1, 5),
-   (1, 7),
-   (2, 7),
-   (2, 8),
-   (2, 11),
-   (3, 4),
-   (3, 7),
-   (4, 7),
-   (4, 12),
-   (4, 14),
-   (5, 4),
-   (5, 7),
-   (5, 13),
-
-   (6, 1),
-   (6, 2),
-   (6, 3),
-   (6, 4),
-   (6, 7),
-   (6, 8),
-   (6, 11),
-   (6, 12),
-   (6, 14),
-   (7, 3),
-   (7, 4),
-   (8, 1),
-   (8, 2),
-   (8, 12),
-   (9, 4),
-   (10, 6),
-   (10, 5),
-   (10, 10),
-
-   (11, 6)
 ;
 
 INSERT INTO users_shows
@@ -196,6 +157,45 @@ VALUES
    (6, 10, 'onRadar', false)
 ;
 
+INSERT INTO shows_genres
+   (show_id, genre_id)
+VALUES
+   (1, 5),
+   (1, 7),
+   (2, 7),
+   (2, 8),
+   (2, 11),
+   (3, 4),
+   (3, 7),
+   (4, 7),
+   (4, 12),
+   (4, 14),
+   (5, 4),
+   (5, 7),
+   (5, 13),
+
+   (6, 1),
+   (6, 2),
+   (6, 3),
+   (6, 4),
+   (6, 7),
+   (6, 8),
+   (6, 11),
+   (6, 12),
+   (6, 14),
+   (7, 3),
+   (7, 4),
+   (8, 1),
+   (8, 2),
+   (8, 12),
+   (9, 4),
+   (10, 6),
+   (10, 5),
+   (10, 10),
+
+   (11, 6)
+;
+
 INSERT INTO comments
    (commenter_id, usershow_id, body)
 VALUES
@@ -224,19 +224,10 @@ SELECT *
 FROM users;
 
 SELECT *
-FROM genres;
-
-SELECT *
 FROM shows;
 
-SELECT shows_genres.id
-   , shows.id AS show_id
-   , title
-   , genres.id AS genre_id
-   , name AS genre
-FROM shows_genres
-INNER JOIN shows ON (shows_genres.show_id = shows.id)
-INNER JOIN genres ON (shows_genres.genre_id = genres.id);
+SELECT *
+FROM genres;
 
 SELECT users_shows.id
    , users.id AS user_id
@@ -248,6 +239,15 @@ SELECT users_shows.id
 FROM users_shows
 INNER JOIN users ON (users_shows.user_id = users.id)
 INNER JOIN shows ON (users_shows.show_id = shows.id);
+
+SELECT shows_genres.id
+   , shows.id AS show_id
+   , title
+   , genres.id AS genre_id
+   , name AS genre
+FROM shows_genres
+INNER JOIN shows ON (shows_genres.show_id = shows.id)
+INNER JOIN genres ON (shows_genres.genre_id = genres.id);
 
 SELECT *
 FROM comments;

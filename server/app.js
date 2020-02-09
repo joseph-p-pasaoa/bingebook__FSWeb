@@ -21,12 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* ROUTING */
     // imports
 const usersRouter = require('./routes/users');
-const genresRouter = require('./routes/genres');
 const showsRouter = require('./routes/shows');
+const genresRouter = require('./routes/genres');
     // connects
 app.use('/users', usersRouter);
-app.use('/genres', genresRouter);
 app.use('/shows', showsRouter);
+app.use('/genres', genresRouter);
 
 
 /* ERROR HANDLING */

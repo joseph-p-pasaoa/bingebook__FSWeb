@@ -33,10 +33,6 @@
     - username - _Unique, Not Null_
     - avatar_url 
 
-  - **Genres**
-    - id
-    - name - _Unique, Not Null_
-
   - **Shows**
     - id
     - imdb_id
@@ -46,10 +42,9 @@
     - ~~genre_id - _References Genres_~~ _(moved to new Shows-Genres)_
     - ~~user_id - _References Users_~~ _(moved to new Users-Shows)_
 
-  - **Shows_Genres**
+  - **Genres**
     - id
-    - show_id - _References Shows + On Delete Cascade_
-    - genre_id - _References Genres + On Delete Cascade_
+    - name - _Unique, Not Null_
 
   - **Users_Shows**
     - id
@@ -57,6 +52,11 @@
     - show_id - _References Shows + On Delete Cascade_
     - watch_status - ("onRadar", "now", "watched")
     - is_top3 - (bool)
+
+  - **Shows_Genres**
+    - id
+    - show_id - _References Shows + On Delete Cascade_
+    - genre_id - _References Genres + On Delete Cascade_
 
   - **Comments**
     - id
@@ -76,13 +76,6 @@
     | GET    | `/users/:id` | Get single user by id | n/a                      |
     | POST   | `/users/`    | Add new user          | `username`, `avatarUrl` |
 
-  - **Genres**
-
-    | Method | Endpoint  | Description    | Body Data    |
-    | ------ | --------- | -------------- | ------------ |
-    | GET    | `/genres` | Get all genres | n/a          |
-    | POST   | `/genres` | Add new genre  | `name` |
-
   - **Shows**
 
     | Method | Endpoint                 | Description                         | Body Data                                 |
@@ -91,18 +84,26 @@
     | GET    | `/shows/:id`             | Get single show by id               | n/a                                       |
     | POST   | `/shows`                 | Add new show                        | `imdb_id`, `title`, `year`, `img_url` |
 
-  - **Shows-Genres**
+  - **Genres**
 
-    | Method | Endpoint                 | Description                         | Body Data                                 |
-    | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
-    | GET    | `/shows-genres/:genre_id` | Get all shows for specific genre_id | n/a                                       |
+    | Method | Endpoint  | Description    | Body Data    |
+    | ------ | --------- | -------------- | ------------ |
+    | GET    | `/genres` | Get all genres | n/a          |
+    | POST   | `/genres` | Add new genre  | `name` |
 
-<!--
   - **Users-Shows**
 
     | Method | Endpoint                 | Description                         | Body Data                                 |
     | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
-    | GET    | `/shows/user/:user_id`   | Get all shows for specific user_id  | n/a                                       |
+    | GET    | `/shows/user/:user_id`   | Get all shows for specific user_id  | n/a   
+
+<!--
+  - **Shows-Genres**
+
+    | Method | Endpoint                 | Description                         | Body Data                                 |
+    | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
+    | GET    | `/shows-genres/:genre_id` | Get all shows for specific genre_id | n/a     
+                                    |
 
   - **Comments**
 
