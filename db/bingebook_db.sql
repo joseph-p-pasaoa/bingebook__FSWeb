@@ -31,14 +31,14 @@ CREATE TABLE shows
    img_url TEXT DEFAULT ''
 );
 
-CREATE TABLE show_genres
+CREATE TABLE shows_genres
 (
    id SERIAL PRIMARY KEY,
    show_id INT REFERENCES shows(id) ON DELETE CASCADE,
    genre_id INT REFERENCES genres(id) ON DELETE CASCADE
 );
 
-CREATE TABLE user_shows
+CREATE TABLE users_shows
 (
    id SERIAL PRIMARY KEY,
    user_id INT REFERENCES users(id) ON DELETE CASCADE,
@@ -51,7 +51,7 @@ CREATE TABLE comments
 (
    id SERIAL PRIMARY KEY,
    commenter_id INT REFERENCES users(id) ON DELETE CASCADE,
-   usershow_id INT REFERENCES user_shows(id) ON DELETE CASCADE,
+   usershow_id INT REFERENCES users_shows(id) ON DELETE CASCADE,
    time_modified TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
    body TEXT NOT NULL
 );
@@ -109,7 +109,7 @@ VALUES
    ('tt0795176', 'Planet Earth', '2006', 'https://m.media-amazon.com/images/M/MV5BNmZlYzIzMTItY2EzYS00YTEyLTg0ZjEtMDMzZjM3ODdhN2UzXkEyXkFqcGdeQXVyNjI0MDg2NzE@._V1_SX300.jpg')
 ;
 
-INSERT INTO show_genres
+INSERT INTO shows_genres
    (show_id, genre_id)
 VALUES
    (1, 5),
@@ -148,7 +148,7 @@ VALUES
    (11, 6)
 ;
 
-INSERT INTO user_shows
+INSERT INTO users_shows
    (user_id, show_id, watch_status, is_top3)
 VALUES
    (1, 1, 'now', false),
@@ -229,28 +229,35 @@ FROM genres;
 SELECT *
 FROM shows;
 
-SELECT show_genres.id
+SELECT shows_genres.id
    , shows.id AS show_id
    , title
    , genres.id AS genre_id
    , name AS genre
-FROM show_genres
-INNER JOIN shows ON (show_genres.show_id = shows.id)
-INNER JOIN genres ON (show_genres.genre_id = genres.id);
+FROM shows_genres
+INNER JOIN shows ON (shows_genres.show_id = shows.id)
+INNER JOIN genres ON (shows_genres.genre_id = genres.id);
 
-SELECT user_shows.id
+SELECT users_shows.id
    , users.id AS user_id
    , username
    , shows.id AS show_id
    , title
    , watch_status
    , is_top3
-FROM user_shows
-INNER JOIN users ON (user_shows.user_id = users.id)
-INNER JOIN shows ON (user_shows.show_id = shows.id);
+FROM users_shows
+INNER JOIN users ON (users_shows.user_id = users.id)
+INNER JOIN shows ON (users_shows.show_id = shows.id);
 
 SELECT *
 FROM comments;
+
+
+
+-- SELECT string_agg(name, ', ')
+-- FROM shows_genres
+-- INNER JOIN genres ON (shows_genres.genre_id = genres.id)
+-- WHERE shows_genres.show_id = 11;
 
 
 /* DATA STORE

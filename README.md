@@ -43,15 +43,15 @@
     - title - _Not Null_
     - year
     - img_url
-    - ~~genre_id - _References Genres_~~ _(moved to new Show-Genres)_
-    - ~~user_id - _References Users_~~ _(moved to new User-Shows)_
+    - ~~genre_id - _References Genres_~~ _(moved to new Shows-Genres)_
+    - ~~user_id - _References Users_~~ _(moved to new Users-Shows)_
 
-  - **Show_Genres**
+  - **Shows_Genres**
     - id
     - show_id - _References Shows + On Delete Cascade_
     - genre_id - _References Genres + On Delete Cascade_
 
-  - **User_Shows**
+  - **Users_Shows**
     - id
     - user_id - _References Users + On Delete Cascade_
     - show_id - _References Shows + On Delete Cascade_
@@ -61,7 +61,7 @@
   - **Comments**
     - id
     - commenter_id - _References Users + On Delete Cascade_
-    - usershow_id - _References User-Shows + On Delete Cascade_
+    - usershow_id - _References Users-Shows + On Delete Cascade_
     - time_modified
     - body - _Not Null_
     - ~~user_id - _References Users_~~ _(redundant by new usershow_id)_
@@ -90,9 +90,20 @@
     | GET    | `/shows`                 | Get all shows                       | n/a                                       |
     | GET    | `/shows/:id`             | Get single show by id               | n/a                                       |
     | POST   | `/shows`                 | Add new show                        | `imdb_id`, `title`, `year`, `img_url` |
-    | GET    | `/shows/genre/:genre_id` | Get all shows for specific genre_id | n/a                                       |
-    | GET    | `/shows/user/:user_id`   | Get all shows for specific user_id  | n/a                                       |
+
+  - **Shows-Genres**
+
+    | Method | Endpoint                 | Description                         | Body Data                                 |
+    | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
+    | GET    | `/shows-genres/:genre_id` | Get all shows for specific genre_id | n/a                                       |
+
 <!--
+  - **Users-Shows**
+
+    | Method | Endpoint                 | Description                         | Body Data                                 |
+    | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
+    | GET    | `/shows/user/:user_id`   | Get all shows for specific user_id  | n/a                                       |
+
   - **Comments**
 
     | Method | Endpoint                  | Description                           | Body Data                            |
