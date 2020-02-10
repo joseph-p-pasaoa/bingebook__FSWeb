@@ -1,6 +1,6 @@
 /*
 JOSEPH P. PASAOA
-Server Input Process Helper | Bingebook (a full-stack binge-facilitating app)
+Server Input Processer Helper | Bingebook (a full-stack binge-facilitating app)
 */
 
 

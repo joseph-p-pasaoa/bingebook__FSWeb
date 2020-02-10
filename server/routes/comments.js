@@ -8,9 +8,9 @@ COMMENTS Route Handlers | Bingebook (a full-stack binge-facilitating app)
 const express = require('express');
   const router = express.Router();
 
-const handleError = require('../helpers/handleError.js');
-const processInput = require('../helpers/processInput.js');
-const queries = require('../queries/comments.js');
+const handleError = require('../helpers/handleError');
+const processInput = require('../helpers/processInput');
+const queries = require('../queries/comments');
 
 
 /* ROUTE HANDLERS */

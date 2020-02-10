@@ -57,41 +57,10 @@ const addShowGenre = async (bodyObj) => {
   return await db.one(postQuery, bodyObj);
 }
 
-// const updateUserShow = async ({ userId, showId, watchStatus, isTop3 }) => {
-//   try {
-//     let insertArr = [];
-//     if (watchStatus) {
-//       insertArr.push(`watch_status = $/watchStatus/`);
-//     }
-//     if (isTop3) {
-//       insertArr.push(`is_top3 = $/isTop3/`);
-//     }
-//     const updatesInsert = insertArr.join(', ');
-//     console.log(updatesInsert);
-//     const updateQuery = `
-//       UPDATE users_shows
-//       SET ${updatesInsert}
-//       WHERE user_id = $/userId/
-//           AND show_id = $/showId/
-//       RETURNING *;
-//     `;
-//     return await db.one(updateQuery, { userId, showId, watchStatus, isTop3 });
-//   } catch (err) {
-//     if (err.message === "No data returned from the query.") {
-//       throw new Error(
-//         `404__error: user.${bodyObj.userId} - show.${bodyObj.showId
-//           } relationship not found. Please check ids and try again`
-//       );
-//     }
-//     throw (err);
-//   }
-// };
-
 
 /* EXPORT */
 module.exports = {
   getAllShowsOfGenre,
   checkShowGenreExists,
-  addShowGenre,
-  // updateUserShow
+  addShowGenre
 }

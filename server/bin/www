@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+/*
+JOSEPH P. PASAOA
+Server ROOT NODE | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
 /**
  * Module dependencies.
  */

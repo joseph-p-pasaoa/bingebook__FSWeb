@@ -1,5 +1,5 @@
 {
-  "name": "bingebook-server",
+  "name": "bingebook--back-end",
   "version": "0.0.0",
   "private": true,
   "scripts": {
