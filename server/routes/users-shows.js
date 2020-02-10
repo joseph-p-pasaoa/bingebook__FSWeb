@@ -11,8 +11,8 @@ const express = require('express');
 const handleError = require('../helpers/handleError.js');
 const processInput = require('../helpers/processInput.js');
 const queries = require('../queries/users-shows.js');
-const checkUserExists = require('../queries/users.js');
-const checkShowExistsInDb = require('../queries/shows.js');
+const refUsers = require('../queries/users.js');
+const refShows = require('../queries/shows.js');
 
 
 /* ROUTE HANDLERS */
@@ -22,7 +22,7 @@ router.get("/user/:user_id", async (req, res, next) => {
       const userId = processInput(req.params.user_id, "idNum", "user id");
       const allShowsOfUser = await queries.getAllShowsOfUser(userId);
       if (allShowsOfUser.length === 0) {
-        await checkUserExists.getUserById(userId);
+        await refUsers.getUserById(userId);
       }
       res.json({
           status: "success",
@@ -43,10 +43,17 @@ router.post("/add/:user_id/:imdb_id", async (req, res, next) => {
       const imdbId = processInput(req.params.imdb_id, "imdbId", "imdb id");
       let showId = null;
       try {
-        const response = await checkShowExistsInDb.getShowByImdbId(imdbId);
+        const response = await refShows.getShowByImdbId(imdbId);
         showId = response.id;
       } catch (err) {
-        console.log("add show here placeholder. possibly frontend automate submit addShow");
+        console.log(`auto-creating show (imdb_id: ${imdbId}) in database`);
+        const title = processInput(req.body.title, "show title", "show title");
+        const year = processInput(req.body.year, "softVarchar22", "show year(s)");
+        const imgUrl = processInput(req.body.imgUrl, "softPicUrl", "show image url");
+        const response = await refShows.addShow({
+          imdbId, title, year, imgUrl
+        });
+        showId = response.id;
       }
 
       // check if user-show relationship already exists and FAIL if so
