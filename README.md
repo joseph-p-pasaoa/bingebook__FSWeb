@@ -12,6 +12,7 @@
 + **IA:** [Jung Rae Jang -- ( @jungraejang )](https//github.com/jungraejang)
 + **IA:** [Wynter Reid -- ( @wynterreid )](https://github.com/wynterreid)
 
+
 ## Developer's Notes
 
 + **I. TO DO**
@@ -27,6 +28,7 @@
       - display existing shows
     - avatar upload sys
     - user auth
+
 
 + **II. Working database SCHEMA**
   - **Users**
@@ -68,6 +70,7 @@
     - ~~user_id - _References Users_~~ _(redundant by new usershow_id)_
     - ~~show_id - _References Shows_~~ _(redundant by new usershow_id)_
 
+
 + **III. Functional ENDPOINTS**
   - **Users**
 
@@ -75,7 +78,7 @@
     | ------ | ------------ | --------------------- | ------------------------ |
     | GET    | `/users`     | Get all users         | n/a                      |
     | GET    | `/users/:id` | Get single user by id | n/a                      |
-    | POST   | `/users/`    | Add new user          | `username`, `avatarUrl` |
+    | POST   | `/users/`    | Add new user          | `username`, `avatarUrl`  |
 
   - **Shows**
 
@@ -83,39 +86,38 @@
     | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
     | GET    | `/shows`                 | Get all shows                       | n/a                                       |
     | GET    | `/shows/:id`             | Get single show by id               | n/a                                       |
-    | GET    | `/shows/imdb/:imdb_id`             | Get single show by Imdb id               | n/a                                       |
-    | POST   | `/shows`                 | Add new show                        | `imdb_id`, `title`, `year`, `img_url` |
+    | GET    | `/shows/imdb/:imdb_id`   | Get single show by Imdb id          | n/a                                       |
+    | POST   | `/shows`                 | Add new show                        | `imdb_id`, `title`, `year`, `img_url`     |
 
   - **Genres**
 
     | Method | Endpoint  | Description    | Body Data    |
     | ------ | --------- | -------------- | ------------ |
     | GET    | `/genres` | Get all genres | n/a          |
-    | POST   | `/genres` | Add new genre  | `name` |
+    | POST   | `/genres` | Add new genre  | `name`       |
 
   - **Users-Shows**
 
-    | Method | Endpoint                 | Description                         | Body Data                                 |
-    | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
-    | GET    | `/users-shows/user/:user_id`   | Get all shows for specific user_id  | n/a
-    | POST   | `/create/:user_id/:imdb_id` | Add new user-show connection w/ watch status | `watch_status` |
-    | PATCH   | `/update/:user_id/:show_id` | Update user-show connection | `watch_status` (optional), `is_top3` (optional) |
+    | Method | Endpoint                     | Description                                  | Body Data                                       |
+    | ------ | ---------------------------- | -------------------------------------------- | ----------------------------------------------- |
+    | GET    | `/users-shows/user/:user_id` | Get all shows for specific user_id           | n/a                                             |
+    | POST   | `/create/:user_id/:imdb_id`  | Add new user-show connection w/ watch status | `watch_status`                                  |
+    | PATCH  | `/update/:user_id/:show_id`  | Update user-show connection                  | `watch_status` (optional), `is_top3` (optional) |
 
   - **Shows-Genres**
 
-    | Method | Endpoint                 | Description                         | Body Data                                 |
-    | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
-    | GET    | `/shows-genres/genre/:name` | Get all shows by specific genre name | n/a |
-    | POST    | `/shows-genres/create/:show_id/:genre_name` | Add new show-genre relationship | n/a |
+    | Method | Endpoint                                     | Description                          | Body Data     |
+    | ------ | -------------------------------------------- | ------------------------------------ | ------------- |
+    | GET    | `/shows-genres/genre/:name`                  | Get all shows by specific genre name | n/a           |
+    | POST   | `/shows-genres/create/:show_id/:genre_name`  | Add new show-genre relationship      | n/a           |
 
-<!--
   - **Comments**
 
-    | Method | Endpoint                  | Description                           | Body Data                            |
-    | ------ | ------------------------- | ------------------------------------- | ------------------------------------ |
-    | GET    | `/comments/show/:show_id` | Get all comments for specific show_id | n/a                                  |
-    | POST   | `/comments`               | Add new comment                       | `comment_body`, `user_id`, `show_id` |
--->
+    | Method | Endpoint                             | Description                                      | Body Data                      |
+    | ------ | ------------------------------------ | ------------------------------------------------ | ------------------------------ |
+    | GET    | `/comments/:watcher_id/:show_id`     | Get all comments for specific user-show page     | n/a                            |
+    | POST   | `/comments/add/:watcher_id/:show_id` | Add new comment                                  | `commenter_id`, `comment_body` |
+
 
 + **IV. Resources Used**
   - http://www.omdbapi.com/
