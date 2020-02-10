@@ -37,9 +37,26 @@ const addGenre = async (bodyObj) => {
   }
 }
 
+const getGenreByName = async (name) => {
+  try {
+    const getQuery = `
+      SELECT *
+      FROM genres
+      WHERE name = $/name/;
+    `;
+    return await db.one(getQuery, { name });
+  } catch (err) {
+    if (err.message === "No data returned from the query.") {
+      throw new Error(`404__error: genre '${name}' does not exist in the database`);
+    }
+    throw (err);
+  }
+}
+
 
 /* EXPORT */
 module.exports = {
   getAllGenres,
-  addGenre
+  addGenre,
+  getGenreByName
 }
