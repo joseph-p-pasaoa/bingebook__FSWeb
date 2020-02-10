@@ -46,7 +46,9 @@ router.post("/create/:show_id/:genre_name", async (req, res, next) => {
         const genreObj = await refGenres.getGenreByName(genreName);
         genreId = genreObj.id;
       } catch (err) {
-        console.log("automate addGenre here placeholder");
+        console.log(`auto-creating genre '${genreName}' in database`);
+        const newGenreRes = await refGenres.addGenre({ name: genreName });
+        genreId = newGenreRes.id;
       }
 
       // check if show-genre relationship already exists and FAIL if so

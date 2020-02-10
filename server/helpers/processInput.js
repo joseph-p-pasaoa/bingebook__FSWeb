@@ -20,7 +20,7 @@ const processInput = (input, location, inputName) => {
           throw new Error(`400__error: empty ${inputName}. please check input and try again`);
         }
         if (input.slice(0, 2) !== "tt" || input.length > 11) {
-          throw new Error(`400__error: invalid imdb ID format. please verify imdb ID is correct`)
+          throw new Error(`400__error: invalid imdb ID format. please verify imdb ID is correct`);
         }
         return input.trim();
 
