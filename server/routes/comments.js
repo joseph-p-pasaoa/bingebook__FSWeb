@@ -30,25 +30,24 @@ router.get("/:watcher_id/:show_id", async (req, res, next) => {
     }
 });
 
-//     // addShow: add a single new show
-// router.post("/", async (req, res, next) => {
-//     try {
-//       const imdbId = processInput(req.body.imdbId, "imdbId", "imdb id");
-//       const title = processInput(req.body.title, "show title", "show title");
-//       const year = processInput(req.body.year, "softVarchar22", "show year(s)");
-//       const imgUrl = processInput(req.body.imgUrl, "softPicUrl", "show image url");
-//       const response = await queries.addShow({
-//         imdbId, title, year, imgUrl
-//       });
-//       res.json({
-//           status: "success",
-//           message: `new show '${title}' added`,
-//           payload: response
-//       });
-//     } catch (err) {
-//       handleError(err, req, res, next);
-//     }
-// });
+    // addComment: add a new comment to a userShow relationship
+router.post("/add/:user_show_id", async (req, res, next) => {
+    try {
+      const commenterId = processInput(req.body.commenterId, "idNum", "commenter id");
+      const userShowId = processInput(req.params.user_show_id, "idNum", "user-show id");
+      const comment = processInput(req.body.comment, "hardText", "comment");
+      const response = await queries.addComment({
+        commenterId, userShowId, comment
+      });
+      res.json({
+          status: "success",
+          message: `new comment on user-show.${userShowId} added`,
+          payload: response
+      });
+    } catch (err) {
+      handleError(err, req, res, next);
+    }
+});
 
 
 module.exports = router;

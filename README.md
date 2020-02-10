@@ -116,7 +116,7 @@
     | Method | Endpoint                             | Description                                      | Body Data                      |
     | ------ | ------------------------------------ | ------------------------------------------------ | ------------------------------ |
     | GET    | `/comments/:watcher_id/:show_id`     | Get all comments for specific user-show page     | n/a                            |
-    | POST   | `/comments/add/:watcher_id/:show_id` | Add new comment                                  | `commenter_id`, `comment_body` |
+    | POST   | `/comments/add/:user_show_id`        | Add new comment                                  | `commenterId`, `comment`       |
 
 
 + **IV. Resources Used**

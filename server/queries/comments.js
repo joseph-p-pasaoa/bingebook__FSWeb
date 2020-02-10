@@ -15,12 +15,12 @@ const getCommentsByUserShow = async (userId, showId) => {
       SELECT commenter_id
           , username AS commenter
           , avatar_url
-          , usershow_id
+          , user_show_id
           , user_id AS watcher_id
           , body
           , time_modified
       FROM comments
-      INNER JOIN users_shows ON (comments.usershow_id = users_shows.id)
+      INNER JOIN users_shows ON (comments.user_show_id = users_shows.id)
       INNER JOIN users ON (comments.commenter_id = users.id)
       WHERE users_shows.user_id = $/userId/
           AND users_shows.show_id = $/showId/
@@ -33,31 +33,26 @@ const getCommentsByUserShow = async (userId, showId) => {
   }
 }
 
-// const addShow = async (bodyObj) => {
-//   try {
-//     const postQuery = `
-//       INSERT INTO shows (imdb_id
-//         , title
-//         , year
-//         , img_url
-//       ) VALUES ($/imdbId/
-//         , $/title/
-//         , $/year/
-//         , $/imgUrl/
-//       ) RETURNING *;
-//     `;
-//     return await db.one(postQuery, bodyObj);
-//   } catch (err) {
-//     if (err.message.includes("violates unique constraint")) {
-//       throw new Error(`403__error: Show '${bodyObj.title}' already exists in database`);
-//     }
-//     throw (err);
-//   }
-// }
+const addComment = async (bodyObj) => {
+  try {
+    const postQuery = `
+      INSERT INTO comments (commenter_id
+        , user_show_id
+        , body
+      ) VALUES ($/commenterId/
+        , $/userShowId/
+        , $/comment/
+      ) RETURNING *;
+    `;
+    return await db.one(postQuery, bodyObj);
+  } catch (err) {
+    throw (err);
+  }
+}
 
 
 /* EXPORT */
 module.exports = {
   getCommentsByUserShow,
-  // addComment
+  addComment
 }
