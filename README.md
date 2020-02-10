@@ -17,6 +17,7 @@
 + **I. TO DO**
   - ~~database file~~
   - back-end
+    - addUserShow handler -> show not in db check forward to auto(?) add show
   - front-end
   - *back-burners:*
     - admin console ?
@@ -97,7 +98,8 @@
     | Method | Endpoint                 | Description                         | Body Data                                 |
     | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
     | GET    | `/users-shows/user/:user_id`   | Get all shows for specific user_id  | n/a
-    | POST   | `/add/:user_id/:imdb_id/:watch_status`                 | Add new user-show connection w/ watch status                       | n/a                                       |
+    | POST   | `/create/:user_id/:imdb_id` | Add new user-show connection w/ watch status | `watch_status` |
+    | PATCH   | `/update/:user_id/:show_id` | Update user-show connection | `watch_status` (optional), `is_top3` (optional) |
 
 <!--
   - **Shows-Genres**

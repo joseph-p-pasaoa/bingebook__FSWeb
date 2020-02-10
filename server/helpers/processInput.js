@@ -81,9 +81,15 @@ const processInput = (input, location, inputName) => {
         const fileType = trimmed.slice(-4);
         const typeCheck = acceptable[fileType] !== true;
         if (protocolCheck || lengthCheck || typeCheck) {
-          throw new Error(`400__error: invalid ${inputName}. please enter a valid url`);
+          throw new Error(`400__error: invalid ${inputName}. Please enter a valid url`);
         }
         return input.trim();
+
+    case "bool":
+        if (input !== "true" && input !== "false") {
+          throw new Error(`404__error: invalid ${inputName} data. Please check your input`);
+        }
+        return input;
 
     default:
         throw new Error("500__error: you're not supposed to be here. input not processed");
