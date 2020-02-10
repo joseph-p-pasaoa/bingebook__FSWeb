@@ -51,7 +51,7 @@ CREATE TABLE comments
 (
    id SERIAL PRIMARY KEY,
    commenter_id INT REFERENCES users(id) ON DELETE CASCADE,
-   usershow_id INT REFERENCES users_shows(id) ON DELETE CASCADE,
+   user_show_id INT REFERENCES users_shows(id) ON DELETE CASCADE,
    time_modified TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
    body TEXT NOT NULL
 );
@@ -197,7 +197,7 @@ VALUES
 ;
 
 INSERT INTO comments
-   (commenter_id, usershow_id, body)
+   (commenter_id, user_show_id, body)
 VALUES
    (1, 30, 'Love this!'),
    (1, 32, 'Yes!'),
