@@ -24,11 +24,13 @@ const usersRouter = require('./routes/users');
 const showsRouter = require('./routes/shows');
 const genresRouter = require('./routes/genres');
 const usersAndShowsRouter = require('./routes/users-shows');
+const showsAndGenresRouter = require('./routes/shows-genres');
     // connects
 app.use('/users', usersRouter);
 app.use('/shows', showsRouter);
 app.use('/genres', genresRouter);
 app.use('/users-shows', usersAndShowsRouter);
+app.use('/shows-genres', showsAndGenresRouter);
 
 
 /* ERROR HANDLING */

@@ -46,7 +46,7 @@ router.post("/add/:user_id/:imdb_id", async (req, res, next) => {
         const response = await checkShowExistsInDb.getShowByImdbId(imdbId);
         showId = response.id;
       } catch (err) {
-        console.log("add show here placeholder");
+        console.log("add show here placeholder. possibly frontend automate submit addShow");
       }
 
       // check if user-show relationship already exists and FAIL if so

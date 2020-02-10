@@ -1,6 +1,6 @@
 /*
 JOSEPH P. PASAOA
-SHOWS Route Queries | Bingebook (a full-stack binge-facilitating app)
+USERS-SHOWS Route Queries | Bingebook (a full-stack binge-facilitating app)
 */
 
 

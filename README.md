@@ -101,14 +101,14 @@
     | POST   | `/create/:user_id/:imdb_id` | Add new user-show connection w/ watch status | `watch_status` |
     | PATCH   | `/update/:user_id/:show_id` | Update user-show connection | `watch_status` (optional), `is_top3` (optional) |
 
-<!--
   - **Shows-Genres**
 
     | Method | Endpoint                 | Description                         | Body Data                                 |
     | ------ | ------------------------ | ----------------------------------- | ----------------------------------------- |
-    | GET    | `/shows-genres/:genre_id` | Get all shows for specific genre_id | n/a     
-                                    |
+    | GET    | `/shows-genres/genre/:name` | Get all shows by specific genre name | n/a |
+    | POST    | `/shows-genres/create/:show_id/:genre_name` | Add new show-genre relationship | n/a |
 
+<!--
   - **Comments**
 
     | Method | Endpoint                  | Description                           | Body Data                            |
