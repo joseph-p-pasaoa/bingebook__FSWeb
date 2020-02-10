@@ -12,13 +12,13 @@
 + **IA:** [Jung Rae Jang -- ( @jungraejang )](https//github.com/jungraejang)
 + **IA:** [Wynter Reid -- ( @wynterreid )](https://github.com/wynterreid)
 
+---
 
 ## Developer's Notes
 
 + **I. TO DO**
   - ~~database file~~
-  - back-end
-    - addUserShow handler -> show not in db check forward to auto(?) add show
+  - ~~back-end (main pass)~~
   - front-end
   - *back-burners:*
     - admin console ?
@@ -29,6 +29,7 @@
     - avatar upload sys
     - user auth
 
+  ---
 
 + **II. Working database SCHEMA**
   - **Users**
@@ -42,7 +43,8 @@
     - title - _Not Null_
     - year
     - img_url
-    - ~~genre_id - _References Genres_~~ _(moved to new Shows-Genres)_
+    - ---
+    - *~~genre_id - _References Genres_~~* _(moved to new Shows-Genres)_
     - ~~user_id - _References Users_~~ _(moved to new Users-Shows)_
 
   - **Genres**
@@ -67,9 +69,11 @@
     - usershow_id - _References Users-Shows + On Delete Cascade_
     - time_modified
     - body - _Not Null_
+    - ---
     - ~~user_id - _References Users_~~ _(redundant by new usershow_id)_
     - ~~show_id - _References Shows_~~ _(redundant by new usershow_id)_
 
+  ---
 
 + **III. Functional ENDPOINTS**
   - **Users**
@@ -118,6 +122,7 @@
     | GET    | `/comments/:watcher_id/:show_id`     | Get all comments for specific user-show page     | n/a                            |
     | POST   | `/comments/add/:user_show_id`        | Add new comment                                  | `commenterId`, `comment`       |
 
+  ---
 
 + **IV. Resources Used**
   - http://www.omdbapi.com/

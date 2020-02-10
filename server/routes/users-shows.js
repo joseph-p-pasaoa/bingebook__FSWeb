@@ -21,6 +21,7 @@ router.get("/user/:user_id", async (req, res, next) => {
     try {
       const userId = processInput(req.params.user_id, "idNum", "user id");
       const allShowsOfUser = await queries.getAllShowsOfUser(userId);
+      // checks because of empty response whether user exists and FAILS if not
       if (allShowsOfUser.length === 0) {
         await refUsers.getUserById(userId);
       }
