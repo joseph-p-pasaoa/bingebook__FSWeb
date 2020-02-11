@@ -9,7 +9,7 @@
 
 ## Instructional Team
 + **LEAD Instructor:** [Alejandro Franco -- ( @alejo4373 )](https://github.com/alejo4373)
-+ **IA:** [Jung Rae Jang -- ( @jungraejang )](https//github.com/jungraejang)
++ **IA:** [Jung Rae Jang -- ( @jungraejang )](https://github.com/jungraejang)
 + **IA:** [Wynter Reid -- ( @wynterreid )](https://github.com/wynterreid)
 
 ---
