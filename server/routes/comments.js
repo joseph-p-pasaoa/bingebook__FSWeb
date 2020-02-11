@@ -20,6 +20,7 @@ router.get("/:watcher_id/:show_id", async (req, res, next) => {
       const watcherId = processInput(req.params.watcher_id, "idNum", "watcher id");
       const showId = processInput(req.params.show_id, "idNum", "show id");
       const commentsByUserShow = await queries.getCommentsByUserShow(watcherId, showId);
+      res.status(200);
       res.json({
           status: "success",
           message: `comments for user.${watcherId} - show.${showId} retrieved`,
@@ -39,6 +40,7 @@ router.post("/add/:user_show_id", async (req, res, next) => {
       const response = await queries.addComment({
         commenterId, userShowId, comment
       });
+      res.status(201);
       res.json({
           status: "success",
           message: `new comment on user-show.${userShowId} added`,

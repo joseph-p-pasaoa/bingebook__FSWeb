@@ -18,6 +18,7 @@ const queries = require('../queries/users');
 router.get("/", async (req, res, next) => {
     try {
       const allUsers = await queries.getAllUsers();
+      res.status(200);
       res.json({
           status: "success",
           message: "all users retrieved",
@@ -33,6 +34,7 @@ router.get("/:id", async (req, res, next) => {
     try {
       const id = processInput(req.params.id, "idNum", "user id");
       const userById = await queries.getUserById(id);
+      res.status(200);
       res.json({
           status: "success",
           message: `user ${id} retrieved`,
@@ -49,6 +51,7 @@ router.post("/", async (req, res, next) => {
       const username = processInput(req.body.username, "hardVarchar22", "username");
       const avatarUrl = processInput(req.body.avatarUrl, "softPicUrl", "avatar url");
       const response = await queries.addUser({ username, avatarUrl });
+      res.status(201);
       res.json({
           status: "success",
           message: `new user '${username}' added`,

@@ -18,6 +18,7 @@ const queries = require('../queries/genres');
 router.get("/", async (req, res, next) => {
     try {
       const allGenres = await queries.getAllGenres();
+      res.status(200);
       res.json({
           status: "success",
           message: "all genres retrieved",
@@ -33,6 +34,7 @@ router.post("/", async (req, res, next) => {
     try {
       const name = processInput(req.body.name, "hardVarchar22", "genre name");
       const response = await queries.addGenre({ name });
+      res.status(201);
       res.json({
           status: "success",
           message: `new genre ${name} added`,

@@ -23,6 +23,7 @@ router.get("/genre/:genre_name", async (req, res, next) => {
       if (allShowsOfGenre.length === 0) {
         await refGenres.getGenreByName(genreName);
       }
+      res.status(200);
       res.json({
           status: "success",
           message: `all shows of genre ${genreName} retrieved`,
@@ -61,6 +62,7 @@ router.post("/create/:show_id/:genre_name", async (req, res, next) => {
 
         // checks passed, execute add
         const response = await queries.addShowGenre({ showId, genreId });
+        res.status(201);
         res.json({
             status: "success",
             message: `new show.${showId} - genre.${genreId} relationship created`,

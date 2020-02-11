@@ -25,6 +25,7 @@ router.get("/user/:user_id", async (req, res, next) => {
       if (allShowsOfUser.length === 0) {
         await refUsers.getUserById(userId);
       }
+      res.status(200);
       res.json({
           status: "success",
           message: `all shows of user ${userId} retrieved`,
@@ -67,6 +68,7 @@ router.post("/add/:user_id/:imdb_id", async (req, res, next) => {
 
         // checks passed, execute add
         const response = await queries.addUserShow({ userId, showId, watchStatus });
+        res.status(201);
         res.json({
             status: "success",
             message: `new user.${userId} - show.${showId} relationship created`,
@@ -100,6 +102,7 @@ router.patch("/update/:user_id/:show_id", async (req, res, next) => {
       }
 
       const response = await queries.updateUserShow({ userId, showId, watchStatus, isTop3 });
+      res.status(201);
       res.json({
           status: "success",
           message: `Updated user.${userId} - show.${showId} relationship data`,

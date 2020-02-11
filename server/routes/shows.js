@@ -18,6 +18,7 @@ const queries = require('../queries/shows');
 router.get("/", async (req, res, next) => {
     try {
       const allShows = await queries.getAllShows();
+      res.status(200);
       res.json({
           status: "success",
           message: "all shows retrieved",
@@ -33,6 +34,7 @@ router.get("/:id", async (req, res, next) => {
     try {
       const id = processInput(req.params.id, "idNum", "show id");
       const showById = await queries.getShowById(id);
+      res.status(200);
       res.json({
           status: "success",
           message: `show ${id} retrieved`,
@@ -48,6 +50,7 @@ router.get("/imdb/:imdb_id", async (req, res, next) => {
     try {
       const imdbId = processInput(req.params.imdb_id, "imdbId", "imdb id");
       const showByImdbId = await queries.getShowByImdbId(imdbId);
+      res.status(200);
       res.json({
           status: "success",
           message: `show '${showByImdbId.title}' using imdb_id '${imdbId}' retrieved`,
@@ -68,6 +71,7 @@ router.post("/", async (req, res, next) => {
       const response = await queries.addShow({
         imdbId, title, year, imgUrl
       });
+      res.status(201);
       res.json({
           status: "success",
           message: `new show '${title}' added`,
