@@ -23,7 +23,7 @@ const getAllShows = async () => {
             WHERE shows.id = shows_genres.show_id
         ) AS genres
     FROM shows
-    ORDER BY id ASC;
+    ORDER BY title ASC;
   `;
   return await db.any(getQuery);
 }
