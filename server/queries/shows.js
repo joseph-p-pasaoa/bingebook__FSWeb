@@ -17,7 +17,7 @@ const getAllShows = async () => {
         , year
         , img_url
         , (
-            SELECT string_agg(name, ', ')
+            SELECT string_agg(name, ', ' ORDER BY name ASC)
             FROM shows_genres
             INNER JOIN genres ON (shows_genres.genre_id = genres.id)
             WHERE shows.id = shows_genres.show_id

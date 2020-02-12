@@ -16,6 +16,30 @@ const refShows = require('../queries/shows');
 
 
 /* ROUTE HANDLERS */
+    // getAllUserShows: gets all relationships, responding with HASHMAP of (showId: watcher_id_arr)
+router.get("/", async (req, res, next) => {
+    try {
+      const allUserShows = await queries.getAllUserShows();
+      const uSHashmap = {};
+      for (let userShow of allUserShows) {
+        let showId = userShow.show_id;
+        if (!uSHashmap[showId]) {
+          uSHashmap[showId] = [];
+        } else {
+          uSHashmap[showId].push({ [userShow.user_id]: userShow.username });
+        }
+      }
+      res.status(200);
+      res.json({
+          status: "success",
+          message: `all user-show relationships retrieved`,
+          payload: uSHashmap
+      });
+    } catch (err) {
+      handleError(err, req, res, next);
+    }
+});
+
     // getAllShowsOfUser: get all shows of one user
 router.get("/user/:user_id", async (req, res, next) => {
     try {

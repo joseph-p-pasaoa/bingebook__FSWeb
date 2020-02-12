@@ -11,13 +11,38 @@ const express = require('express');
 const handleError = require('../helpers/handleError');
 const processInput = require('../helpers/processInput');
 const queries = require('../queries/shows');
+const refUsersShows = require('../queries/users-shows');
 
 
 /* ROUTE HANDLERS */
     // getAllShows: get all shows data
 router.get("/", async (req, res, next) => {
     try {
-      const allShows = await queries.getAllShows();
+      // helper function to get all user-show relationships and format into hashmap
+      const getUserShowsHashmap = async () => {
+        const allUserShows = await refUsersShows.getAllUserShows();
+        const uSHashmap = {};
+        for (let userShow of allUserShows) {
+          let showId = userShow.show_id;
+          if (!uSHashmap[showId]) {
+            uSHashmap[showId] = [];
+          } else {
+            uSHashmap[showId].push({ [userShow.user_id]: userShow.username });
+          }
+        }
+        return uSHashmap;
+      }
+      
+      // get allShows query and user-shows hashmap
+      const [ allShows, uSHashmap ] = await Promise.all([
+          queries.getAllShows(),
+          getUserShowsHashmap()
+      ]);
+
+      // combine user-shows data into allShows and respond
+      for (let showObj of allShows) {
+        showObj["watchers"] = uSHashmap[showObj.id];
+      }
       res.status(200);
       res.json({
           status: "success",

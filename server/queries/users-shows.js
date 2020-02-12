@@ -9,6 +9,19 @@ const db = require('../db');
 
 
 /* QUERIES */
+const getAllUserShows = async () => {
+  const getQuery = `
+    SELECT show_id
+        , user_id
+        , username
+    FROM users_shows
+    INNER JOIN users ON (users_shows.user_id = users.id)
+    ORDER BY show_id ASC
+        , LOWER(username) ASC;
+  `;
+  return await db.any(getQuery);
+}
+
 const getAllShowsOfUser = async (userId) => {
   const getQuery = `
     SELECT users_shows.id
@@ -93,6 +106,7 @@ const updateUserShow = async ({ userId, showId, watchStatus, isTop3 }) => {
 
 /* EXPORT */
 module.exports = {
+  getAllUserShows,
   getAllShowsOfUser,
   checkUserShowExists,
   addUserShow,
