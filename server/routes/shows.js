@@ -27,7 +27,7 @@ router.get("/", async (req, res, next) => {
           if (!uSHashmap[showId]) {
             uSHashmap[showId] = [];
           } else {
-            uSHashmap[showId].push({ [userShow.user_id]: userShow.username });
+            uSHashmap[showId].push({ watcherId: userShow.user_id, username: userShow.username });
           }
         }
         return uSHashmap;
