@@ -61,6 +61,12 @@ const getOneFullUserShow = async (showId, userId) => {
           , is_top3
           , watch_status
           , users_shows.id AS usershow_id
+          , (
+              SELECT string_agg(name, ', ' ORDER BY name ASC)
+              FROM shows_genres
+              INNER JOIN genres ON (shows_genres.genre_id = genres.id)
+              WHERE shows.id = shows_genres.show_id
+          ) AS genres
       FROM users_shows
       INNER JOIN users ON (users_shows.user_id = users.id)
       INNER JOIN shows ON (users_shows.show_id = shows.id)
