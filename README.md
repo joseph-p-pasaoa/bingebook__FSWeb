@@ -106,6 +106,7 @@
     | ------ | ---------------------------- | -------------------------------------------- | ----------------------------------------------- |
     | GET    | `/users-shows/` | Get all user-show relationships in hashmap           | n/a                                             |
     | GET    | `/users-shows/user/:user_id` | Get all shows for specific user_id           | n/a                                             |
+    | GET    | `/users-shows/show/:show_id/user/:user_id` | Get the complete dataset of a specific user-show relationship | n/a                                             |
     | POST   | `/create/:user_id/:imdb_id`  | Add new user-show connection w/ watch status | `watch_status`; if new show, also: `title`, `year`, `imgUrl` |
     | PATCH  | `/update/:user_id/:show_id`  | Update user-show connection                  | `watch_status` (optional), `is_top3` (optional) |
 

@@ -41,6 +41,36 @@ const getAllShowsOfUser = async (userId) => {
   return await db.any(getQuery, { userId });
 }
 
+const getOneFullUserShow = async (showId, userId) => {
+  try {
+    const getQuery = `
+      SELECT user_id
+          , username
+          , avatar_url
+          , show_id
+          , title
+          , year
+          , imdb_id
+          , img_url
+          , is_top3
+          , watch_status
+          , users_shows.id AS usershow_id
+      FROM users_shows
+      INNER JOIN users ON (users_shows.user_id = users.id)
+      INNER JOIN shows ON (users_shows.show_id = shows.id)
+      WHERE user_id = $/userId/
+          AND show_id = $/showId/;
+    `;
+    return await db.one(getQuery, { showId, userId });
+  } catch (err) {
+    if (err.message === "No data returned from the query.") {
+      throw new Error(`404__error: No relationship between user.${userId
+        } and show.${showId} exists in our database`);
+    }
+    throw (err);
+  }
+}
+
 const checkUserShowExists = async (userId, showId) => {
   try {
     const getQuery = `
@@ -108,6 +138,7 @@ const updateUserShow = async ({ userId, showId, watchStatus, isTop3 }) => {
 module.exports = {
   getAllUserShows,
   getAllShowsOfUser,
+  getOneFullUserShow,
   checkUserShowExists,
   addUserShow,
   updateUserShow

@@ -25,9 +25,10 @@ router.get("/", async (req, res, next) => {
         let showId = userShow.show_id;
         if (!uSHashmap[showId]) {
           uSHashmap[showId] = [];
-        } else {
-          uSHashmap[showId].push({ [userShow.user_id]: userShow.username });
         }
+        const userIdName = {};
+        userIdName[userShow.user_id] = userShow.username;
+        uSHashmap[showId].push(userIdName);
       }
       res.status(200);
       res.json({
@@ -60,17 +61,35 @@ router.get("/user/:user_id", async (req, res, next) => {
     }
 });
 
+    // getOneFullUserShow: get the complete data of one user-show relationship
+router.get("/show/:show_id/user/:user_id", async (req, res, next) => {
+    try {
+      const showId = processInput(req.params.show_id, "idNum", "show id");
+      const userId = processInput(req.params.user_id, "idNum", "user id");
+      const oneFullUserShow = await queries.getOneFullUserShow(showId, userId);
+      res.status(200);
+      res.json({
+          status: "success",
+          message: `target user.${userId} - show.${showId} retrieved`,
+          payload: oneFullUserShow
+      });
+    } catch (err) {
+      handleError(err, req, res, next);
+    }
+});
+
     // addUserShow: add a user-show relationship
 router.post("/add/:user_id/:imdb_id", async (req, res, next) => {
     try {
-      const watchStatus = processInput(req.body.watch_status, "watchStatus", "watch status");
+      const watchStatus = processInput(req.body.watchStatus, "watchStatus", "watch status");
 
       // check if show exists in db and if so grab show_id
       const imdbId = processInput(req.params.imdb_id, "imdbId", "imdb id");
-      let showId = null;
+      let showId = null, wasShowJustCreated = null;
       try {
         const response = await refShows.getShowByImdbId(imdbId);
         showId = response.id;
+        wasShowJustCreated = false;
       } catch (err) {
         console.log(`auto-creating show (imdb_id: ${imdbId}) in database`);
         const title = processInput(req.body.title, "show title", "show title");
@@ -80,6 +99,7 @@ router.post("/add/:user_id/:imdb_id", async (req, res, next) => {
           imdbId, title, year, imgUrl
         });
         showId = response.id;
+        wasShowJustCreated = true;
       }
 
       // check if user-show relationship already exists and FAIL if so
@@ -96,7 +116,7 @@ router.post("/add/:user_id/:imdb_id", async (req, res, next) => {
         res.json({
             status: "success",
             message: `new user.${userId} - show.${showId} relationship created`,
-            payload: response
+            payload: { ...response, wasShowJustCreated: wasShowJustCreated }
         });
       }
     } catch (err) {
