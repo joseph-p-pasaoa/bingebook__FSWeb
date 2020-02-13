@@ -91,6 +91,12 @@ const processInput = (input, location, inputName) => {
         }
         return input.trim();
 
+    case "multiLineText":
+        if (!input) {
+          throw new Error(`400__error: empty ${inputName}. Please enter a valid input`);
+        }
+        return input;
+
     case "bool":
         if (input !== "true" && input !== "false") {
           throw new Error(`404__error: invalid ${inputName} data. Please check your input`);

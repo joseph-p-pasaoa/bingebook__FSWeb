@@ -36,7 +36,7 @@ router.post("/add/:user_show_id", async (req, res, next) => {
     try {
       const commenterId = processInput(req.body.commenterId, "idNum", "commenter id");
       const userShowId = processInput(req.params.user_show_id, "idNum", "user-show id");
-      const comment = processInput(req.body.comment, "hardText", "comment");
+      const comment = processInput(req.body.comment, "multiLineText", "comment");
       const response = await queries.addComment({
         commenterId, userShowId, comment
       });
