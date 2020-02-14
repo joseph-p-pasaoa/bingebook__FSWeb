@@ -13,7 +13,7 @@ const getAllGenres = async () => {
   const getQuery = `
     SELECT *
     FROM genres
-    ORDER BY id ASC;
+    ORDER BY name ASC;
   `;
   return await db.any(getQuery);
 }

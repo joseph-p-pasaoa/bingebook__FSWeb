@@ -12,7 +12,8 @@ const db = require('../db');
 const getCommentsByUserShow = async (userId, showId) => {
   try {
     const getQuery = `
-      SELECT commenter_id
+      SELECT comments.id AS comment_id
+          , commenter_id
           , username AS commenter
           , avatar_url
           , user_show_id
