@@ -11,11 +11,7 @@ const db = require('../db');
 /* QUERIES */
 const getAllShows = async () => {
   const getQuery = `
-    SELECT id
-        , imdb_id
-        , title
-        , year
-        , img_url
+    SELECT *
         , (
             SELECT string_agg(name, ', ' ORDER BY name ASC)
             FROM shows_genres
@@ -32,6 +28,12 @@ const getShowById = async (id) => {
   try {
     const getQuery = `
       SELECT *
+          , (
+              SELECT string_agg(name, ', ' ORDER BY name ASC)
+              FROM shows_genres
+              INNER JOIN genres ON (shows_genres.genre_id = genres.id)
+              WHERE shows.id = shows_genres.show_id
+          ) AS genres
       FROM shows
       WHERE id = $/id/;
     `;
@@ -44,10 +46,41 @@ const getShowById = async (id) => {
   }
 }
 
+const getAllShowsOfGenre = async (genreId) => {
+  return await db.task(async t => {
+    const getShowIdsQuery = `
+      SELECT STRING_AGG(show_id::CHARACTER VARYING, ',') AS show_ids
+      FROM shows_genres
+      WHERE genre_id = $/genreId/;
+    `;
+    const resShowIds = await t.one(getShowIdsQuery, { genreId });
+    const showIds = resShowIds.show_ids.split(',');
+    const getShowsQuery = `
+      SELECT *
+          , (
+              SELECT STRING_AGG(name, ', ' ORDER BY name ASC)
+              FROM shows_genres
+              INNER JOIN genres ON (shows_genres.genre_id = genres.id)
+              WHERE shows.id = shows_genres.show_id
+          ) AS genres
+      FROM shows
+      WHERE id IN ($/showIds:list/)
+      ORDER BY title ASC;
+    `;
+    return await t.any(getShowsQuery, { showIds });
+  });
+}
+
 const getShowByImdbId = async (imdbId) => {
   try {
     const getQuery = `
       SELECT *
+          , (
+              SELECT string_agg(name, ', ' ORDER BY name ASC)
+              FROM shows_genres
+              INNER JOIN genres ON (shows_genres.genre_id = genres.id)
+              WHERE shows.id = shows_genres.show_id
+          ) AS genres
       FROM shows
       WHERE imdb_id = $/imdbId/;
     `;
@@ -87,6 +120,7 @@ const addShow = async (bodyObj) => {
 /* EXPORT */
 module.exports = {
   getAllShows,
+  getAllShowsOfGenre,
   getShowById,
   getShowByImdbId,
   addShow
