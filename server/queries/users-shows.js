@@ -102,6 +102,26 @@ const checkUserShowExists = async (userId, showId) => {
   }
 }
 
+const checkIsAlreadyBinging = async (userId, imdbId) => {
+  try {
+    const getQuery = `
+      SELECT *
+      FROM users_shows
+      JOIN shows ON (users_shows.show_id = shows.id)
+      WHERE user_id = $/userId/ AND
+          imdb_id = $/imdbId/;
+    `;
+    await db.one(getQuery, { userId, imdbId });
+    return true;
+  } catch (err) {
+    if (err.message === "No data returned from the query.") {
+      return false;
+    } else {
+      throw (err);
+    }
+  }
+}
+
 const addUserShow = async (bodyObj) => {
   const postQuery = `
     INSERT INTO users_shows (user_id
@@ -152,6 +172,7 @@ module.exports = {
   getAllShowsOfUser,
   getOneFullUserShow,
   checkUserShowExists,
+  checkIsAlreadyBinging,
   addUserShow,
   updateUserShow
 }

@@ -78,6 +78,23 @@ router.get("/show/:show_id/user/:user_id", async (req, res, next) => {
     }
 });
 
+    // checkIsAlreadyBinging: get boolean if whether user-show (by imdbId) already exists or not
+router.get("/user/:user_id/imdb/:imdb_id", async (req, res, next) => {
+    try {
+      const userId = processInput(req.params.user_id, "idNum", "user id");
+      const imdbId = processInput(req.params.imdb_id, "imdbId", "imdb id");
+      const isAlreadyBinging = await queries.checkIsAlreadyBinging(userId, imdbId);
+      res.status(200);
+      res.json({
+          status: "success",
+          message: `target user.${userId} - show imdb.${imdbId} retrieved`,
+          payload: { imdbId, isAlreadyBinging }
+      });
+    } catch (err) {
+      handleError(err, req, res, next);
+    }
+});
+
     // addUserShow: add a user-show relationship
 router.post("/add/:user_id/:imdb_id", async (req, res, next) => {
     try {
