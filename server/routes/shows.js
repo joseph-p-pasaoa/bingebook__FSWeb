@@ -53,11 +53,12 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-  // getAllShowsOfGenre: get all shows that have a specified genre
-router.get("/genre/:genre_id", async (req, res, next) => {
+  // getAllShowsOfGenre: get all shows that have a specified genre + check if already related
+router.get("/genre/:genre_id/:current_user_id", async (req, res, next) => {
     try {
       const genreId = processInput(req.params.genre_id, "idNum", "genre id");
-      const allShowsOfGenre = await queries.getAllShowsOfGenre(genreId);
+      const cId = processInput(req.params.current_user_id, "idNum", "current user's id");
+      const allShowsOfGenre = await queries.getAllShowsOfGenre(genreId, cId);
       res.status(200);
       res.json({
           status: "success",

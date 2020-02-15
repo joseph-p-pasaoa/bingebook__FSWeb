@@ -46,8 +46,10 @@ const getShowById = async (id) => {
   }
 }
 
-const getAllShowsOfGenre = async (genreId) => {
+const getAllShowsOfGenre = async (genreId, cId) => {
   return await db.task(async t => {
+
+    // get ids of all shows with specified genre
     const getShowIdsQuery = `
       SELECT STRING_AGG(show_id::CHARACTER VARYING, ',') AS show_ids
       FROM shows_genres
@@ -55,6 +57,8 @@ const getAllShowsOfGenre = async (genreId) => {
     `;
     const resShowIds = await t.one(getShowIdsQuery, { genreId });
     const showIds = resShowIds.show_ids.split(',');
+
+    // get full datasets of shows whose ids were previously fetched
     const getShowsQuery = `
       SELECT *
           , (
@@ -67,7 +71,36 @@ const getAllShowsOfGenre = async (genreId) => {
       WHERE id IN ($/showIds:list/)
       ORDER BY title ASC;
     `;
-    return await t.any(getShowsQuery, { showIds });
+      // retry later for adding user-show existence check into query
+      // -- , (
+      // --     SELECT users_shows.user_id
+      // --     FROM shows
+      // --     LEFT JOIN users_shows ON (shows.id = users_shows.show_id)
+      // --     WHERE shows.id = id
+      // --         AND users_shows.user_id = $/cId/
+      // -- )
+    const resShowsFull = await t.any(getShowsQuery, { showIds });
+
+    // get current user's show relations so we can add to server response
+    const getUsersShowsIdsQuery = `
+      SELECT STRING_AGG(show_id::CHARACTER VARYING, ',') AS show_ids
+      FROM users_shows
+      WHERE user_id = $/cId/;
+    `;
+    const usersShowsIds = await t.one(getUsersShowsIdsQuery, { cId })
+      .then(res => res.show_ids.split(','));
+
+    // create hashmap for current user's show ids
+    const usersShowsIdsHash = {};
+    for (let id of usersShowsIds) {
+      usersShowsIdsHash[id] = true;
+    }
+
+    // add to server response whether or not current user already has relationship
+    for (let showFull of resShowsFull) {
+      showFull["related"] = usersShowsIdsHash[showFull.id] ? true : false;
+    }
+    return resShowsFull;
   });
 }
 
