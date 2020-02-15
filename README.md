@@ -1,8 +1,17 @@
 # Bingebook (back end) (full-stack app)
 
+## Table of Contents
++ [Technologies Implemented                  ](#technologies-implemented)
++ [Setup](#setup)
++ [Developer's To Dos](#i-to-do)
++ [Database Schema](#ii-working-database-schema)
++ [Endpoints](#iii-functional-endpoints)
++ [Resources Used](#resources-used)
++ [Assignment Practical](#PURSUIT-Comprehensive-Technical-Assessment---Practical)
+
 ## Repos
-+ [Back End](https://github.com/joseph-p-pasaoa/bingebook_backE__FullStack)
-+ [Front End](https://github.com/joseph-p-pasaoa/bingebook_frontE__FullStack) (this repo)
++ [Back End](https://github.com/joseph-p-pasaoa/bingebook_backE__FullStack) (this repo)
++ [Front End](https://github.com/joseph-p-pasaoa/bingebook_frontE__FullStack)
 
 ## Developer
 + **JOSEPH P. PASAOA**
@@ -12,26 +21,64 @@
 + **IA:** [Jung Rae Jang -- ( @jungraejang )](https://github.com/jungraejang)
 + **IA:** [Wynter Reid -- ( @wynterreid )](https://github.com/wynterreid)
 
+## Technologies Implemented
++ PostgreSQL 12.1
++ Express.js 4.16.1
++ React 16.12.0
++ React/Redux 7.1.3
++ Redux 4.0.5
++ React Router Web 5.1.2
++ Pg-promise 10.3.2
++ Axios 0.19.2
++ Node.js 13.8.0
++ JavaScript 2019 / ECMAScript 10
++ HTML5
++ CSS3
++ Git / Github
+
+## Setup
++ To run this project, install it locally using npm:
+  ```
+  $ cd ../server
+  $ npm install
+  $ npm start
+  ```
++ To run the full Bingebook, install the [front end](https://github.com/joseph-p-pasaoa/bingebook_frontE__FullStack) locally afterwards, as well,  using npm:
+  ```
+  $ npm install
+  $ npm start
+  ```
++ Obtain and implement api key from Omdb API as mentioned below
++ The site app will be found at: http://localhost:11222/
+
+## Resources Used
+  - [OMDb API: The Open Movie Database](http://www.omdbapi.com/)
+    - api key goes in frontEnd: src/helpers/secret.js
+  - [Flaticon Icons](https://www.flaticon.com/)
+    - [Sporting Avatars](https://www.flaticon.com/packs/sporting-avatars) by [Freepik](https://www.flaticon.com/authors/freepik)
+
 ---
 
 ## Developer's Notes
 
-+ **I. TO DO**
+### **I. TO DO**
   - ~~database file~~
   - ~~back-end (main pass)~~
-  - front-end
-  - *back-burners:*
-    - admin console ?
-      - admin DELETE
-      - display existing users
-      - display existing genres
-      - display existing shows
+  - ~~front-end (main pass)~~
+  - ~~reach mvp~~
+  - *post-mvp:*
+    - animated placeholder for still-loading-page status
+    - edit and delete watch statuses
+    - edit and delete comments
     - avatar upload sys
-    - user auth
+    - user auth sys
+    - refactor navbar
+    - refactor route handling
+    - better front-end error handling
 
   ---
 
-+ **II. Working database SCHEMA**
+### **II. Working database SCHEMA**
   - **Users**
     - id
     - username - _Unique, Not Null_
@@ -75,7 +122,7 @@
 
   ---
 
-+ **III. Functional ENDPOINTS**
+### **III. Functional ENDPOINTS**
   - **Users**
 
     | Method | Endpoint     | Description           | Body Data                |
@@ -126,16 +173,6 @@
     | GET    | `/comments/:watcher_id/:show_id`     | Get all comments for specific user-show page     | n/a                            |
     | POST   | `/comments/add/:user_show_id`        | Add new comment                                  | `commenterId`, `comment`       |
 
-  ---
-
-+ **IV. Resources Used**
-  - http://www.omdbapi.com/
-  - https://www.slashfilm.com/numbers-long-movie-title/
-  - https://www.flaticon.com/packs/sporting-avatars
-      ```
-      <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a></div>
-      ```
-  
 ---
 
 ---
