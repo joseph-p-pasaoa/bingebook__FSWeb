@@ -1,6 +1,6 @@
 # Bingebook (back end) (full-stack app)
 
-## Table of Contents
+### _Table of Contents_
 + [Technologies Implemented                  ](#technologies-implemented)
 + [Setup](#setup)
 + [Developer's To Dos](#i-to-do)
@@ -9,11 +9,11 @@
 + [Resources Used](#resources-used)
 + [Assignment Practical](#PURSUIT-Comprehensive-Technical-Assessment---Practical)
 
-## Repos
+### _Repos_
 + [Back End](https://github.com/joseph-p-pasaoa/bingebook_backE__FullStack) (this repo)
 + [Front End](https://github.com/joseph-p-pasaoa/bingebook_frontE__FullStack)
 
-## Developer
+## **Developer**
 + **JOSEPH P. PASAOA**
 
 ## Instructional Team
@@ -43,7 +43,12 @@
   $ npm install
   $ npm start
   ```
-+ To run the full Bingebook, install the [front end](https://github.com/joseph-p-pasaoa/bingebook_frontE__FullStack) locally afterwards, as well,  using npm:
++ Instantiate and seed the PostgresQL database:
+  ```
+  $ cd db
+  $ psql -f bingebook_db.sql
+  ```
++ To run the full stack of Bingebook, also install the [front end](https://github.com/joseph-p-pasaoa/bingebook_frontE__FullStack) locally afterwards, using npm:
   ```
   $ npm install
   $ npm start
