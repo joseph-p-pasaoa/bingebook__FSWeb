@@ -50,28 +50,38 @@ const getAllShowsOfUser = async (userId) => {
 const getOneFullUserShow = async (showId, userId) => {
   try {
     const getQuery = `
-      SELECT user_id
-          , username
-          , avatar_url
-          , show_id
-          , title
-          , year
-          , imdb_id
-          , img_url
-          , is_top3
-          , watch_status
-          , users_shows.id AS usershow_id
-          , (
-              SELECT string_agg(name, ', ' ORDER BY name ASC)
-              FROM shows_genres
-              INNER JOIN genres ON (shows_genres.genre_id = genres.id)
-              WHERE shows.id = shows_genres.show_id
-          ) AS genres
-      FROM users_shows
-      INNER JOIN users ON (users_shows.user_id = users.id)
-      INNER JOIN shows ON (users_shows.show_id = shows.id)
-      WHERE user_id = $/userId/
-          AND show_id = $/showId/;
+      SELECT 
+            us.user_id,
+            u.username,
+            u.avatar_url,
+            us.show_id,
+            s.title
+          , s.year
+          , s.imdb_id
+          , s.img_url
+          , us.is_top3
+          , us.watch_status
+          , us.id as usershow_id
+          , string_agg(g.name, ', ' ORDER BY g.name ASC) as genre_name_list
+      FROM users_shows us
+      INNER JOIN users u ON (us.user_id = u.id)
+      INNER JOIN shows s ON (us.show_id = s.id)
+      INNER JOIN shows_genres sg ON (sg.show_id = s.id)
+      INNER JOIN genres g ON (g.id = sg.genre_id)
+      WHERE us.user_id = 6
+          AND us.show_id = 2
+      GROUP BY 
+      us.user_id
+    , u.username
+    , u.avatar_url
+    , us.show_id
+    , s.title
+    , s.year
+    , s.imdb_id
+    , s.img_url
+    , us.is_top3
+    , us.watch_status
+    , us.id;
     `;
     return await db.one(getQuery, { showId, userId });
   } catch (err) {
