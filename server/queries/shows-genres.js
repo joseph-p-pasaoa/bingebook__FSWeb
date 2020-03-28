@@ -5,7 +5,7 @@ SHOWS-GENRES Route Queries | Bingebook (a full-stack binge-facilitating app)
 
 
 /* DB CONNECTION */
-const db = require('../db');
+const db = require('../helpers/db');
 
 
 /* QUERIES */
