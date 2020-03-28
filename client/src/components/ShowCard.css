@@ -1,0 +1,84 @@
+/*
+JOSEPH P. PASAOA
+ShowCard Component CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+li.card-show {
+    width: auto;
+    padding: 9px 9px 33px 12px;
+    border-bottom: solid 1px #000;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.card-show--img {
+    height: 132px;
+    width: 102px;
+    object-fit: cover;
+    border-radius: 1px;
+    box-shadow: 2px 3px 3px #222;
+    margin-right: 22px;
+}
+
+.card-show--right-side {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* .card-show--title {
+    color: #444;
+} */
+
+.card-show--title-link:link, .card-show--title-link:visited {
+    color: #444;
+    text-decoration: none;
+}
+
+.card-show--title-link:hover, .card-show--title-link:active {
+    color: blue;
+}
+
+.card-show--year {
+    color: #888;
+}
+
+.card-show--header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.card--text-single {
+    margin: 3px 6px 3px 45px;
+
+    font-size: 0.9em;
+}
+
+ul.card-show--watchers {
+    margin: 1px 0px 3px 70px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    line-height: normal;
+}
+
+ul.card-show--watchers li {
+    display: inline-block;
+    width: max-content;
+    font-size: 0.9em;
+    margin-right: 5px;
+}

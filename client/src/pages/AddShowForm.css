@@ -1,0 +1,53 @@
+/*
+JOSEPH P. PASAOA
+AddShowForm Page Component CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.add-show--header-grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+
+    width: 100%;
+}
+
+.add-show--header-grid label {
+    margin: 3px 6px 3px 3px;
+
+    font-family: 'Oxygen', sans-serif;
+    font-size: 0.9em;
+}
+
+.add-show--header-grid select {
+    margin: 4px 6px 6px 3px;
+}
+
+.addshow--form {
+    margin-bottom: 11px;
+}
+
+.addshow--form button {
+    position: relative;
+    top: -3px;
+
+    margin: 0px 2px;
+}
+
+.addshow--input-txt {
+    border-radius: 3px;
+    padding: 2px 7px;
+    width: 211px;
+    margin-right: 3px;
+
+    font-size: 0.9em;
+}
+
+.addshow--msg-error {
+    height: 18px;
+    color: maroon;
+}
+
+.addshow--results {
+    width: 100%;
+}

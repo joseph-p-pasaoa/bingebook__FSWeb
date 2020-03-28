@@ -1,0 +1,58 @@
+/*
+JOSEPH P. PASAOA
+UserShowProfile Page Component CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.user-show--header-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+
+    width: 100%;
+}
+
+.form-comments {
+    width: 100%;
+    margin-bottom: 33px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.form-comments label {
+    margin: 33px 6px 11px 88px;
+}
+
+.input-comment {
+    height: 90px;
+    width: 75%;
+    padding: 2px 9px;
+    border-radius: 6px;
+    margin: 3px 6px 3px 116px;
+
+    font-size: 0.9em;
+}
+
+.btn-comment {
+    margin: 3px 6px 3px 117px;
+}
+
+.msg-error {
+    margin: 6px 6px 6px 23px;
+
+    font-weight: bold;
+
+    color: firebrick;
+}
+
+.comments--container {
+    align-items: stretch;
+    width: -webkit-fill-available;
+    margin: 0 17%;
+    padding-top: 22px;
+    border-top: 4px solid #222;
+    border-bottom: 4px solid #222;
+}

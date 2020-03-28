@@ -1,0 +1,144 @@
+/*
+JOSEPH P. PASAOA
+Client App MAIN CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+body {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1em;
+}
+
+h1 {
+    /* page titles */
+    position: fixed;
+    bottom: 55px;
+    left: 252px;
+    width: max-content;
+    z-index: 10;
+
+    font-family: 'Cookie', cursive;
+    font-size: 2.7em;
+    padding: 3px;
+    margin: 3px;
+    text-shadow: 1px 3px 3px #999;
+}
+
+h2 {
+    /* show headers */
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    font-weight: bold;
+
+    margin: 11px 6px 6px 11px;
+}
+
+h3 {
+    /* show years */
+    font-family: 'Oxygen', sans-serif;
+    font-size: 0.9em;
+    margin: 17px 6px 6px 8px;
+}
+
+p {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 0.9em;
+}
+
+strong {
+    font-weight: bold;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, div#root, .App {
+    height: 100%;
+    width: 100%;
+}
+
+ul, li {
+    list-style: none;
+}
+
+button {
+    padding: 2px 12px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px #777;
+
+    font-size: 0.8em;
+
+    cursor: pointer;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.return-to-top-link {
+    align-self: center;
+    margin: 44px 3px 0px 3px;
+    font-size: 0.9em;
+}
+
+a.regular-copy:link, a.regular-copy:visited {
+    color: #9c5b0a;
+    text-decoration: none;
+
+    transition: color 0.3s;
+}
+
+a.regular-copy:hover, a.regular-copy:active {
+    color: #00f;
+    text-decoration: underline;
+}
+
+.App {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 110px;
+
+    text-align: left;
+    font-size: 1em;
+}
+
+div#stage--padding-right {
+    overflow-y: auto;
+
+    min-height: 100%;
+    padding-right: 100px;
+
+    border-top: solid 22px #d4d4d4; /* #d8c3c3; */
+    border-bottom: solid 22px #d4d4d4; /* #d8c3c3; */
+    background-color: #efefef; /* #fff4f4; */
+}
+
+div#stage--column-flex {
+    width: auto;
+    min-height: 100%;
+    padding: 50px 5px 50px 100px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}

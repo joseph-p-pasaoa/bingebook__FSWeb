@@ -1,0 +1,41 @@
+/*
+JOSEPH P. PASAOA
+About Page Component CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.about-page--welcome {
+    font-family: 'Cookie', sans-serif;
+    margin: 3px 6px 14vh 8px;
+    font-size: 2em;
+}
+
+.about-page--welcome .username {
+    font-size: 1.4em;
+    text-shadow: 0px 2px 3px #000;
+    color: #fff;
+}
+
+.about-page--header {
+    margin-bottom: 10px;
+
+    font-family: 'Cinzel', serif;
+    font-size: 1.3em;
+    font-weight: bold;
+
+    color: maroon;
+}
+
+.about-page--copy {
+    margin: 3px 6px 3px 8px;
+    width: 43%;
+
+    line-height: 1.3em;
+}
+
+.salutations {
+    margin-top: 3vh;
+    margin-bottom: 3px;
+
+    font-weight: bold;
+}

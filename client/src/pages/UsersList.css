@@ -1,0 +1,32 @@
+/*
+JOSEPH P. PASAOA
+UsersList Page CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.list-users--container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+}
+
+.card-user--current-box {
+    width: 100%;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #000;
+}
+
+.card-user--current-label {
+    position: relative;
+    top: -3px;
+    left: -7px;
+
+    font-family: 'Cinzel';
+    font-size: 1.5em;
+    font-weight: bold;
+
+    color: #000;
+}

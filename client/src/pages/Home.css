@@ -1,0 +1,29 @@
+/*
+JOSEPH P. PASAOA
+Home Page Component CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+/* div#stage--padding-right {
+    background-color: #222;
+} */
+
+.home-page {
+    padding: 20% 0px 0px 17%;
+    width: 100%;
+}
+
+.welcome-msg {
+    font-family: 'Cinzel', sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.2em;
+
+    color: #333;
+}
+
+.home-page em {
+    font-size: xx-large;
+    text-shadow: 0px 2px 3px #000;
+    color: #fff;
+}

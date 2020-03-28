@@ -1,0 +1,52 @@
+/*
+JOSEPH P. PASAOA
+CommentCard Component CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.card-comment {
+    align-items: stretch;
+
+    margin-bottom: 22px;
+}
+
+.card-comment-column {
+    align-items: center;
+
+    min-width: 30%;
+    background-color: #eee;
+    border-left: 11px solid #ddd;
+}
+
+h3.comment-card--username {
+    margin: 7px 11px 7px 6px;
+
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+img.comment-card--avatar {
+    margin: 0px 11px 11px 7px;
+    height: 55px;
+    max-width: 88px;
+    object-fit: fill;
+    border-radius: 7px;
+
+    background-color: #fff;
+    object-position: 0px 6px; /* for demo avatars only */
+}
+
+.comment-card--time {
+    font-size: 0.7em;
+    margin: 3px 3px 3px 6px;
+    color: #222;
+}
+
+.comment-card--comment {
+    white-space: pre-line;
+    padding: 20px 29px 6px 39px;
+    width: 100%;
+
+    background-color: #fff;
+}
