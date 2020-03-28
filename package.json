@@ -1,0 +1,17 @@
+{
+    "name": "bingebook",
+    "version": "1.0.0",
+    "description": "Bingebook is a full-stack binge-facilitating organizational and social networking app.",
+    "main": "server/app.js",
+    "scripts": {
+        "start": "node ./server/bin/www",
+        "heroku-postbuild": "cd server && npm install && cd ../client && npm install && npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Joseph P. Pasaoa",
+    "license": "ISC",
+    "engines": {
+        "node": "12.5.0"
+    }
+}
