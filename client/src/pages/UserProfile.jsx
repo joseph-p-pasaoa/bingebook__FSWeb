@@ -85,7 +85,7 @@ const UserProfile = (props) => {
       </div>
 
       {addShowBtn}
-
+      {console.log("YES", hostname)}
       <h2 className="list-users-shows--container--label">
         {isCurrentUser ? "my favorites" : `${peekedUser.username}'s favorites`}
       </h2>
