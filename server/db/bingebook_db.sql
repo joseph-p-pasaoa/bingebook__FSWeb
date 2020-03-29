@@ -67,13 +67,13 @@ CREATE TABLE comments
 INSERT INTO users
    (username, avatar_url)
 VALUES
-   ('AlwaysOnAHorse', 'http://localhost:11211/images/uploaded-avatars/avatar-horsewoman.svg'),  -- 1
-   ('mike1235711', 'http://localhost:11211/images/uploaded-avatars/avatar-karate.svg'),
-   ('ericSego', 'http://localhost:11211/images/uploaded-avatars/avatar-cornrows.svg'),
-   ('DanielleLA', 'http://localhost:11211/images/uploaded-avatars/avatar-orange-bun.svg'),
-   ('No_harm_No_FOUL', 'http://localhost:11211/images/uploaded-avatars/avatar-referee.svg'),
+   ('AlwaysOnAHorse', '/images/uploaded-avatars/avatar-horsewoman.svg'),  -- 1
+   ('mike1235711', '/images/uploaded-avatars/avatar-karate.svg'),
+   ('ericSego', '/images/uploaded-avatars/avatar-cornrows.svg'),
+   ('DanielleLA', '/images/uploaded-avatars/avatar-orange-bun.svg'),
+   ('No_harm_No_FOUL', '/images/uploaded-avatars/avatar-referee.svg'),
 
-   ('just judi', 'http://localhost:11211/images/uploaded-avatars/avatar-sporty-her.svg')        -- 6
+   ('just judi', '/images/uploaded-avatars/avatar-sporty-her.svg')        -- 6
 ;
 
 INSERT INTO shows

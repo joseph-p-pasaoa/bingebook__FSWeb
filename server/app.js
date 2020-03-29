@@ -16,7 +16,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 
@@ -39,13 +38,15 @@ app.use('/comments', commentsRouter);
 
 /* HEROKU DEPLOYMENT */
 if (process.env.NODE_ENV === 'production') {
-  console.log("HIIIIIIIIT!!!");
   app.use(express.static(path.join(__dirname, '../client/build')));
-  app.use(express.static(path.join(__dirname, 'public')));
   app.use('*', (req, res) => {
       res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
   });
 }
+
+
+/* PUBLIC FOLDER VISIBILITY */
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 /* ERROR HANDLING */
