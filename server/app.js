@@ -36,7 +36,7 @@ app.use('/shows-genres', showsAndGenresRouter);
 app.use('/comments', commentsRouter);
 
 
-/* HEROKU DEPLOYMENT */
+/* CONNECT PUBLIC FOLDER + HEROKU DEPLOYMENT CONNECTIONS */
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
