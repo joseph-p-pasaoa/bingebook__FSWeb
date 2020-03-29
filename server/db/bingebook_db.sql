@@ -8,12 +8,12 @@ Database Creation & Seed PSQL File | Bingebook (a full-stack binge-facilitating 
 -- DROP DATABASE IF EXISTS bingebook_db;
 -- CREATE DATABASE bingebook_db;
 -- \c bingebook_db;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS shows;
-DROP TABLE IF EXISTS genres;
-DROP TABLE IF EXISTS users_shows;
-DROP TABLE IF EXISTS shows_genres;
 DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS shows_genres;
+DROP TABLE IF EXISTS users_shows;
+DROP TABLE IF EXISTS genres;
+DROP TABLE IF EXISTS shows;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users
 (
