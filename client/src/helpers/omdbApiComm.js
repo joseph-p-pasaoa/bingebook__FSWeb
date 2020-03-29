@@ -7,7 +7,12 @@ OMDb API Communication Helper | Bingebook (a full-stack binge-facilitating app)
 /* EXTERNALS & LOCALS */
 import axios from 'axios';
 
-import apiKey from './secret';
+import localKey from './secret';
+
+const apiKey = process.env.NODE_ENV === 'production'
+  ? process.env.API_OMDB_KEY
+  : localKey
+;
 
 
 /* FETCHES */
