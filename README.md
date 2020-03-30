@@ -1,25 +1,22 @@
 # Bingebook (back end) (full-stack app)
 
+### **Developer: JOSEPH P. PASAOA**
+
 ### _Table of Contents_
-+ [Technologies Implemented                  ](#technologies-implemented)
++ [Technologies Implemented](#technologies-implemented)
 + [Setup](#setup)
++ [Resources Used](#resources-used)
 + [Developer's To Dos](#i-to-do)
 + [Database Schema](#ii-working-database-schema)
 + [Endpoints](#iii-functional-endpoints)
-+ [Resources Used](#resources-used)
-+ [Assignment Practical](#PURSUIT-Comprehensive-Technical-Assessment---Practical)
 
-### _Repos_
-+ [Back End](https://github.com/joseph-p-pasaoa/bingebook_backE__FullStack) (this repo)
-+ [Front End](https://github.com/joseph-p-pasaoa/bingebook_frontE__FullStack)
-
-## **Developer**
-+ **JOSEPH P. PASAOA**
+![screencap of Bingebook](./docs/readme/assets/search-screencap.jpg)
 
 ## Instructional Team
 + **LEAD Instructor:** [Alejandro Franco -- ( @alejo4373 )](https://github.com/alejo4373)
 + **IA:** [Jung Rae Jang -- ( @jungraejang )](https://github.com/jungraejang)
 + **IA:** [Wynter Reid -- ( @wynterreid )](https://github.com/wynterreid)
++ **Program Manager:** [Dessa Shepherd](https://www.linkedin.com/in/dessa-shepherd-7a55b374/)
 
 ## Technologies Implemented
 + PostgreSQL 12.1
@@ -37,28 +34,28 @@
 + Git / Github
 
 ## Setup
-+ To run this project, install it locally using npm:
++ To run this project, instantiate and seed the database with PostgreSQL:
   ```
-  $ cd ../server
-  $ npm install
-  $ npm start
-  ```
-+ Instantiate and seed the PostgresQL database:
-  ```
-  $ cd db
+  $ cd server/db
   $ psql -f bingebook_db.sql
   ```
-+ To run the full stack of Bingebook, also install the [front end](https://github.com/joseph-p-pasaoa/bingebook_frontE__FullStack) locally afterwards, using npm:
++ Obtain api key from [Omdb API](http://www.omdbapi.com/apikey.aspx) and paste it into the keyholder file, then install the server locally using npm:
   ```
+  $ // using your editor of choice, paste api key into pasteApiKeyHere.js and save
+  $ cd server
   $ npm install
   $ npm start
   ```
-+ Obtain and implement api key from Omdb API as mentioned below
++ In another terminal instance install the frontend locally using npm:
+  ```
+  $ cd client
+  $ npm install
+  $ npm start
+  ```
 + The site app will be found at: http://localhost:11222/
 
 ## Resources Used
   - [OMDb API: The Open Movie Database](http://www.omdbapi.com/)
-    - api key goes in frontEnd: src/helpers/secret.js
   - [Flaticon Icons](https://www.flaticon.com/)
     - [Sporting Avatars](https://www.flaticon.com/packs/sporting-avatars) by [Freepik](https://www.flaticon.com/authors/freepik)
 
