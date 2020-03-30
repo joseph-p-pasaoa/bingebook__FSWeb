@@ -11,11 +11,9 @@ const axios = require('axios');
 
 const handleError = require('../helpers/handleError');
 const processInput = require('../helpers/processInput');
-const localKey = require('../helpers/secret');
-
-const apiKey = (process.env.NODE_ENV === 'production')
+const apiKey = process.env.NODE_ENV === 'production'
   ? process.env.API_OMDB_KEY
-  : localKey
+  : require('../helpers/secret')
 ;
 
 
