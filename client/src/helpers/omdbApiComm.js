@@ -7,27 +7,14 @@ OMDb API Communication Helper | Bingebook (a full-stack binge-facilitating app)
 /* EXTERNALS & LOCALS */
 import axios from 'axios';
 
-import localKey from './secret';
-
-const apiKey = process.env.NODE_ENV === 'production'
-  ? process.env.API_OMDB_KEY
-  : localKey
-;
-
+import { hostname } from './urls';
 
 /* FETCHES */
     // get search results
-export const getApiSearch = async (search) => {
-  const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=`;
-  const url = baseUrl + search;
-
+export const getApiSearch = async (query) => {
   try {
-    const response = await axios.get(url);
-    if (response.data.Response && response.data.Response === "False") {
-      return [];
-    } else {
-      return response.data.Search;
-    }
+    const response = await axios.get(hostname + `/omdb/search?terms=${query}`);
+    return response.data.payload;
   } catch (err) {
     console.log("error during API get: ", err);
   }
@@ -35,12 +22,9 @@ export const getApiSearch = async (search) => {
 
     // get full data on one specific show
 export const getApiShow = async (imdbId) => {
-  const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&i=`;
-  const url = baseUrl + imdbId;
-
   try {
-    const response = await axios.get(url);
-    return response.data;
+    const response = await axios.get(hostname + `/omdb/${imdbId}`);
+    return response.data.payload;
   } catch (err) {
     console.log("error during API get: ", err);
   }

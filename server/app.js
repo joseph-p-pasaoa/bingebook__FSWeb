@@ -21,6 +21,7 @@ app.use(cors());
 
 /* ROUTING */
     // imports
+const omdbRouter = require('./routes/omdb');
 const usersRouter = require('./routes/users');
 const showsRouter = require('./routes/shows');
 const genresRouter = require('./routes/genres');
@@ -28,6 +29,7 @@ const usersAndShowsRouter = require('./routes/users-shows');
 const showsAndGenresRouter = require('./routes/shows-genres');
 const commentsRouter = require('./routes/comments');
     // connects
+app.use('/omdb', omdbRouter);
 app.use('/users', usersRouter);
 app.use('/shows', showsRouter);
 app.use('/genres', genresRouter);

@@ -33,6 +33,15 @@ const processInput = (input, location, inputName) => {
         }
         return input.trim();
 
+    case "hardVarchar60":
+        if (!input || !input.trim()) {
+          throw new Error(`400__error: empty ${inputName} input. please re-enter and try again`);
+        }
+        if (input.trim().length > 60) {
+          throw new Error(`400__error: ${inputName} is too long. please shorten`);
+        }
+        return input.trim();
+
     case "softVarchar22":
         if (!input || !input.trim()) {
           return "";
