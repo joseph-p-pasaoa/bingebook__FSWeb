@@ -1,6 +1,9 @@
-# Bingebook (back end) (full-stack app)
+# Bingebook (a full-stack web app)
+
+*Bingebook is a full-stack binge-facilitating social networking app.*
 
 ### **Developer: JOSEPH P. PASAOA**
+
 
 ### _Table of Contents_
 + [Technologies Implemented](#technologies-implemented)
