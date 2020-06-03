@@ -145,7 +145,6 @@ const updateUserShow = async ({ userId, showId, watchStatus, isTop3 }) => {
       insertArr.push(`is_top3 = $/isTop3/`);
     }
     const updatesInsert = insertArr.join(', ');
-    console.log(updatesInsert);
     const updateQuery = `
       UPDATE users_shows
       SET ${updatesInsert}

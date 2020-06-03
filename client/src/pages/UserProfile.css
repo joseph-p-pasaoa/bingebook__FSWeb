@@ -38,6 +38,7 @@ UserProfile Page CSS | Bingebook (a full-stack binge-facilitating app)
 
 .addshow-btn {
     margin: 22px 3px 6px 11px;
+    background-color: #a6ef31;
 }
 
 .disabled, .disabled:active {
