@@ -34,7 +34,7 @@ const App = () => {
               <Route path={`/shows/:show_id/user/:user_id`} component={UserShowProfile} />
               <Route path={`/shows`} component={ShowsList} />
               <Route path={`/about`} component={About} />
-              <Route path={`/`} render={Home} />
+              <Route path={`/`} component={Home} />
             </Switch>
           </div>
         </div>
