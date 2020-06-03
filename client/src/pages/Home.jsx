@@ -19,7 +19,7 @@ const Home = ({ cUsername }) => {
       <p className="welcome-msg">What shows people talk about.<br /><br /></p>
       <p className="welcome-msg"><em>Mastery</em> over everything you binge.</p>
 
-      <p className="personal-msg">Welcome, <b>{cUsername}</b>!</p>
+      <p className="about-page--welcome personal-msg">Welcome, <span className="username">{cUsername}</span>!</p>
     </div>
   );
 }
