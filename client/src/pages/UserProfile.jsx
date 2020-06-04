@@ -17,6 +17,8 @@ import { hostname } from '../helpers/urls';
 
 /* MAIN */
 const UserProfile = (props) => {
+  const { setIsLoading } = props;
+
   const [ peekedUser, setPeekedUser ] = useState({ username: "" });
   const [ usersShows, setUsersShows ] = useState([]);
 
@@ -31,10 +33,11 @@ const UserProfile = (props) => {
       ]);
       setPeekedUser(userRes.data.payload);
       setUsersShows(showsRes.data.payload);
+      setIsLoading(false);
     }
 
     getPeekedUserComplete();
-  }, [peekedId]);
+  }, [peekedId, setIsLoading]);
 
 
   // LINK BUTTON TO ADD SHOW IF ON CURRENT USER'S PROFILE
